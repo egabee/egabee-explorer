@@ -20,27 +20,7 @@ export type HeaderIcon = {
 
 
 export const columns: ColumnDef<HeaderIcon>[] = [
-  {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={table.getIsAllPageRowsSelected()}
-        onCheckedChange={(value: any) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-        className="border border-supernova  overflow-hidden my-2"
-      />
-    ),
-    cell: ({ row }) => (
-      <Checkbox
-        checked={row.getIsSelected()}
-        onCheckedChange={(value: any) => row.toggleSelected(!!value)}
-        aria-label="Select row"
-        className="border border-supernova  overflow-hidden my-2"
-      />
-    ),
-    enableSorting: false,
-    enableHiding: false,
-  },
+
   {
     accessorKey: "address",
     header: "Address",
