@@ -17,7 +17,7 @@ const data = [{
   network: "courem"
 },
 {
-  id: "1",
+  id: "2",
   address: "bnbhnbhjgbhjbjhb",
   name: "ddddd",
   network: "courem"
@@ -29,17 +29,16 @@ export default function Home() {
     <div className="py-8 px-4 ">
       <div className='container'>
         <div className="flex justify-between mb-4">
-          <div className="text-2xl font-bold">
-            {/* <p>Explorer</p> */}
-          </div>
+          {/* <div className="flex justify-end">
+          </div> */}
 
           <div className="flex justify-end">
             <Select >
-              <SelectTrigger className="w-[180px] cursor-pointer h-10 text-sm font-semibold  text-black
-          rounded-md bg-accent hover:bg-light-yellow-20 duration-100 py-2 bg-white border-border ">
+              <SelectTrigger className="w-[180px] cursor-pointer h-10 text-sm font-semibold  text-white bg-special
+          rounded-lg  hover:bg-light-yellow-20 duration-100 py-2 border-border ">
                 <SelectValue placeholder="Options" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className=' shadow-lg   '>
                 <SelectItem value="contact">contract</SelectItem>
                 <SelectItem value="token">token</SelectItem>
                 <SelectItem value="nft">nft</SelectItem>

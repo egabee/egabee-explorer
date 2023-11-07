@@ -38,14 +38,14 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
 
   return (
     <>
-      <div className='mt-16 bg-white border border-border rounded-md shadow-sm  '>
+      <div className='mt-20 bg-white border border-border rounded-lg shadow-md  '>
         <Table >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className='text-black border-b border-border '>
+                    <TableHead key={header.id} className='text-special font-bold border-b border-border '>
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   )

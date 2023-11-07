@@ -22,6 +22,10 @@ export type HeaderIcon = {
 export const columns: ColumnDef<HeaderIcon>[] = [
 
   {
+    accessorKey: "id",
+    header: "#",
+  },
+  {
     accessorKey: "address",
     header: "Address",
   },
