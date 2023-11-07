@@ -38,14 +38,14 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
 
   return (
     <>
-      <div className='mt-4 '>
+      <div className='mt-16 bg-white border border-border rounded-md shadow-sm  '>
         <Table >
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className='text-[#9A999E]'>
+                    <TableHead key={header.id} className='text-black border-b border-border '>
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   )
@@ -62,9 +62,10 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                     if ((e.target as HTMLButtonElement).tagName == "TD") {
                       onRowClick(row.original.id, row.index)
                     }
-                  }} >
+                  }}
+                  className='hover:bg-[#F9F9F9] border-b border-border ' >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className='text-[#9A999E]'>
+                    <TableCell key={cell.id} className='text-black py-6'>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
                   ))}
                 </TableRow>
@@ -95,7 +96,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 }}
 
               >
-                <SelectTrigger className="h-8 w-[60px] bg-transparent border border-[#9A999E]">
+                <SelectTrigger className="h-8 w-[60px] bg-transparent border border-[#9A999E] ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
                 <SelectContent side="top">
