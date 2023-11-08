@@ -12,7 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 
 export type HeaderIcon = {
   id: string
-  address: string
+  address?: string
   name: string
   network: string
 
