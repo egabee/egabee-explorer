@@ -1,9 +1,6 @@
 "use client"
-import Image from 'next/image'
 import React, { useEffect } from 'react'
-import ky from "ky";
-import { CombinedContract, CreateNewContract, UserContract, Contract, General } from '@/lib/contract'
-import { Token } from '@/lib/token'
+import { Token, Contract } from '@/lib/types'
 import { DataTable } from '@/components/ui/data-table'
 import { columns } from './columns'
 import {
@@ -13,24 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-import { createUrl } from "@/lib/fetcher";
-import Fetchdata from '@/lib/fetch-data';
+
 import axios from "axios";
-
-const data1 = [{
-  id: "1",
-  address: "bnbhnbhjgbhjbjhb",
-  name: "ddddd",
-  network: "courem"
-},
-{
-  id: "2",
-  address: "bnbhnbhjgbhjbjhb",
-  name: "ddddd",
-  network: "courem"
-},
-]
-
 
 
 
@@ -42,11 +23,12 @@ const data1 = [{
 export default function Home() {
   const [userContracts, setUserContracts] = React.useState<Contract[]>([])
   const [userToken, setUserToken] = React.useState<Token[]>([])
-  const [usedata, setUsedata] = React.useState<General[]>([])
   const [post, setPost] = React.useState(null);
   const [selectConteract, setSelectContract] = React.useState(false)
   const [selectToken, setSelectToken] = React.useState(false)
+  const [selectnft, setSelectnft] = React.useState(false)
   const [useEndpoint, setUseEndpoint] = React.useState("")
+  const [Data, setData] = React.useState<{ id: string, name: string, address: string, network: string }[]>([])
 
 
   // const Fetchdata = (data: string) => {
@@ -54,40 +36,57 @@ export default function Home() {
     if (selectConteract == true) {
       const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/contracts/"
       const getdata = async () => {
-        axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`).then((response) => {
-          setUserContracts(response.data);
-        })
+        const data: Contract[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
+        console.log(data)
+        setData(
+          data.map(({ contractAddress, id, contractName, networkId }) => ({
+            id,
+            address: contractAddress,
+            name: contractName,
+            network: networkId,
+          }))
+        )
       }
 
 
       getdata();
     } else if (selectToken == true) {
       const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
-
       const getdata = async () => {
-        axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`).then((response) => {
-
-          setUserToken(response.data);
-        });
+        const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
+        setData(
+          data.map(({ id, name, networkId, tokenAddress }) => ({
+            id: id,
+            name: name,
+            address: tokenAddress,
+            network: networkId,
+          }))
+        )
       }
       getdata();
 
-    };
+    }
+    // else if (selectnft == true) {
+    //   const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
+    //   const getdata = async () => {
+    //     const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
+    //     setData(
+    //       data.map(({ id, name, networkId, tokenAddress }) => ({
+    //         id: id,
+    //         name: name,
+    //         address: tokenAddress,
+    //         network: networkId,
+    //       }))
+    //     )
+    //   }
+    //   getdata();
+
+    // }
 
   }, [selectConteract, selectToken, useEndpoint]);
 
 
-  // React.useEffect(() => {
-  //   const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
-  //   const getdata = async () => {
-  //     axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`).then((response) => {
-  //       setUserToken(response.data);
 
-
-  //     });
-  //   };
-  //   getdata();
-  // }, [selectToken]);
 
 
 
@@ -98,10 +97,15 @@ export default function Home() {
       setSelectToken(false)
     }
     else if (api === "token") {
-      // const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
+
       setSelectToken(true)
       setSelectContract(false)
     }
+    // else if (api === "nft") {
+
+    //   setSelectnft(true)
+    //   setSelectContract(false)
+    // }
 
   }
 
@@ -110,8 +114,6 @@ export default function Home() {
 
 
 
-  // SelectApi("contract")
-  // SelectApi("token")
 
 
 
@@ -144,52 +146,15 @@ export default function Home() {
         </div>
         {/* <hr className='horizontal-line my-9' /> */}
 
-        {/* usedata.map(({ id, contractName, networkId }) => ({
-            id: id,
-            name: contractName,
-            address: null,
-            network: networkId,
-          })) */}
-        {(!selectConteract && !selectToken) && (
-          <DataTable
-            columns={columns}
 
-            data={[]}
-            onRowClick={function (id: string, index: number): void {
-              throw new Error('Function not implemented.')
-            }} />
-        )}
-        {selectConteract && (
-          <DataTable
-            columns={columns}
+        <DataTable
+          columns={columns}
+          data={Data}
+          onRowClick={function (id: string, index: number): void {
+            throw new Error('Function not implemented.')
+          }} />
 
-            data={userContracts.map(({ id, contractName, networkId }) => ({
-              id: id,
-              name: contractName,
-              address: "",
-              network: networkId,
-            }))}
-            onRowClick={function (id: string, index: number): void {
-              throw new Error('Function not implemented.')
-            }} />
 
-        )}
-        {selectToken && (
-          <DataTable
-            columns={columns}
-
-            data={userToken.map(({ id, name, networkId, tokenAddress }) => ({
-              id: id,
-              name: name,
-              address: tokenAddress,
-              network: networkId,
-            }))}
-            onRowClick={function (id: string, index: number): void {
-              throw new Error('Function not implemented.')
-            }} />
-        )
-
-        }
 
       </div >
     </div>
