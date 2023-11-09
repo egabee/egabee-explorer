@@ -55,7 +55,7 @@ export default function Home() {
       const getdata = async () => {
         const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
         setData(
-          data.map(({ id, name, networkId, tokenAddress }) => ({
+          data.filter((item) => item.symbol !== "ucore").map(({ id, name, networkId, tokenAddress }) => ({
             id: id,
             name: name,
             address: tokenAddress,
