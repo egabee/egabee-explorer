@@ -27,14 +27,14 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
 
   return (
     <>
-      <div className="mt-20 bg-white border border-border rounded-lg shadow-md  ">
+      <div className="mt-10  ">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-special font-bold border-b border-border ">
+                    <TableHead key={header.id} className="text-[#9A999E] font-bold border-b border-border ">
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   )
@@ -53,10 +53,12 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                       onRowClick(row.original.id, row.index)
                     }
                   }}
-                  className="hover:bg-[#F9F9F9] border-b border-border "
+                  className={`cursor-pointer ${row.index % 2 === 0 ? 'even-row' : 'odd-row'}`}
+
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-black py-6">
+                    <TableCell key={cell.id}
+                      className={`className="text-[#9A999E] ${cell.id == '0_address' ? 'truncate ' : ''} `}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
@@ -85,7 +87,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                   table.setPageSize(Number(value))
                 }}
               >
-                <SelectTrigger className="h-8 w-[60px] bg-transparent border border-[#9A999E] ">
+                <SelectTrigger className="h-8 w-[60px] bg-transparent border border-[#9A999E] hover:bg-supernova hover:text-black ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
                 <SelectContent side="top">

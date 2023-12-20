@@ -1,17 +1,19 @@
 'use client'
 import axios from 'axios'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Token, Contract } from '@/lib/types'
 import { DataTable } from '@/components/ui/data-table'
 import { columns } from './columns'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import SearchBar from '@/components/topbar/search-bar'
 
 function getNetworkName(networkId: string) {
   return networkId === '527339fa-ca4b-4eb0-8b6a-a53a6e5fac25' ? 'Coreum(mainnet)' : 'Coreum(testnet)'
 }
 
 export default function Home() {
+  const [showModal, setShowModal] = useState(false)
   const [selectConteract, setSelectContract] = React.useState(false)
   const [selectToken, setSelectToken] = React.useState(false)
   const [selectnft, setSelectnft] = React.useState(false)
@@ -95,51 +97,59 @@ export default function Home() {
   }
 
   return (
-    <div className="py-8 px-4 ">
-      <div className="container">
-        <div className="flex justify-between mb-4">
-          {/* <div className="flex justify-end">
-          </div> */}
-          <div className="flex justify-end">
-            <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
-              <SelectTrigger
-                className="w-[180px] cursor-pointer h-10 text-sm font-semibold  text-white bg-special
-          rounded-lg  hover:bg-light-yellow-20 duration-100 py-2 border-border "
-              >
-                <SelectValue placeholder="Select Network" />
-              </SelectTrigger>
-              <SelectContent className="shadow-lg">
-                <SelectItem value="527339fa-ca4b-4eb0-8b6a-a53a6e5fac25" className="cursor-pointer">
-                  Coreum Mainnet
-                </SelectItem>
-                <SelectItem value="27a28106-27ae-4bec-a956-f38bed27d84a">Coreum testnet</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="flex justify-end">
-            <Select defaultValue={key} onValueChange={setKey}>
-              <SelectTrigger
-                className="w-[180px] cursor-pointer h-10 text-sm font-semibold  text-white bg-special
-          rounded-lg  hover:bg-light-yellow-20 duration-100 py-2 border-border "
-              >
-                <SelectValue placeholder="Select Type" />
-              </SelectTrigger>
-              <SelectContent className=" shadow-lg   ">
-                <SelectItem value="contracts" className="cursor-pointer">
-                  Contracts
-                </SelectItem>
-                <SelectItem value="tokens">Tokens</SelectItem>
-                <SelectItem value="nfts">NFTs</SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-        </div>
-
-        {/* <hr className='horizontal-line my-9' /> */}
-
-        <DataTable columns={columns} data={Data} onRowClick={() => {}} />
+    <> <div className=" flex flex-col flex-1 overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-supernova scrollbar-track-mmist">
+      <div className="w-full z-[1000] fixed top-0 left-0">
+        <SearchBar />
       </div>
     </div>
+      <div className="py-2 px-4 mt-20  ">
+        <div className="container">
+          <div className="flex justify-end mb-4 gap-2">
+            {/* <div className="flex justify-end">
+          </div> */}
+            <div className="flex justify-end">
+              <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
+                <SelectTrigger
+                  className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 
+                rounded bg-transparent text-light-yellow  hover:text-black  border-light-yellow  hover:bg-light-yellow-20 duration-100"
+                >
+                  <SelectValue placeholder="Select Network" />
+                </SelectTrigger>
+                <SelectContent className="shadow-lg">
+                  <SelectItem value="527339fa-ca4b-4eb0-8b6a-a53a6e5fac25" className="cursor-pointer">
+                    Coreum Mainnet
+
+                  </SelectItem>
+                  <SelectItem value="27a28106-27ae-4bec-a956-f38bed27d84a">Coreum testnet</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="flex justify-end">
+              <Select defaultValue={key} onValueChange={setKey}>
+                <SelectTrigger
+                  className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 text-black border-none
+                rounded bg-light-yellow hover:bg-light-yellow-20 duration-100 "
+                >
+                  <SelectValue placeholder="Select Type" />
+                </SelectTrigger>
+                <SelectContent className=" shadow-lg   ">
+                  <SelectItem value="contracts" className="cursor-pointer">
+                    Contracts
+                  </SelectItem>
+                  <SelectItem value="tokens">Tokens</SelectItem>
+                  <SelectItem value="nfts">NFTs</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          {/* <hr className='horizontal-line my-9' /> */}
+
+          <DataTable columns={columns} data={Data} onRowClick={() => { }} />
+        </div>
+      </div>
+    </>
+
   )
 }
