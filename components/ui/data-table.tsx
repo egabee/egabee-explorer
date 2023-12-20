@@ -34,7 +34,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-[#9A999E] font-bold border-b border-border ">
+                    <TableHead key={header.id} className="text-[#9A999E] font-bold  ">
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                     </TableHead>
                   )
