@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Button } from '@/components/ui/button'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
+import CopyFunction from '../buttons/copy-button'
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
@@ -60,6 +60,8 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                     <TableCell key={cell.id}
                       className={`className="text-[#9A999E] ${cell.id == '0_address' ? 'truncate ' : ''} `}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {cell.id.includes('_txHash') && <CopyFunction item={row.getValue('txHash')} />}
+                      {cell.id.includes('_address') && <CopyFunction item={row.getValue('address')} />}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -90,7 +92,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 <SelectTrigger className="h-8 w-[60px] bg-transparent border border-[#9A999E] hover:bg-supernova hover:text-black ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
-                <SelectContent side="top">
+                <SelectContent side="top" className="bg-shark text-white">
                   {[20, 50].map((pageSize) => (
                     <SelectItem key={pageSize} value={`${pageSize}`}>
                       {pageSize}

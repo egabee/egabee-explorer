@@ -74,3 +74,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+.even-row {
+  background-color: #8080801f;
+}
+
+.odd-row {
+  background-color: transparent;
+}
