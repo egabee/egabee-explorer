@@ -240,11 +240,11 @@ export default function SearchBar() {
   // }
 
   // handle auth
-  useEffect(() => {
-    if (status !== 'loading' && status === 'unauthenticated') {
-      router.push('/login')
-    }
-  }, [router, status])
+  // useEffect(() => {
+  //   if (status !== 'loading' && status === 'unauthenticated') {
+  //     router.push('/login')
+  //   }
+  // }, [router, status])
 
   // handle search req (set api key search)
   // useEffect(() => {
