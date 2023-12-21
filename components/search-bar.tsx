@@ -8,7 +8,7 @@ import clsx from 'clsx'
 import { PiBugFill } from 'react-icons/pi'
 import { ChevronDown, Plus, PlusCircle, Search } from 'lucide-react'
 // import { useSearch } from '@/hooks/useSearch'
-import Spinner from '../ui/spinner'
+
 // import { CombinedContract, CreateNewContract, isValidContractAddress, trackNewContract } from '@/lib/contract'
 // import { CombinedWallet, NewWalletRequest, isValidWalletAddress, trackNewWallet } from '@/lib/wallet'
 // import { CombinedToken, NewTokenRequest, isValidTokenAddress, trackNewToken } from '@/lib/token'
@@ -125,19 +125,19 @@ export default function SearchBar() {
   //   }
   // }
 
-  const clearSearch = () => {
-    // setSearchText('')
-    setKey('')
-  }
+  // const clearSearch = () => {
+  //   // setSearchText('')
+  //   setKey('')
+  // }
 
-  const openModule = (e: React.MouseEvent<HTMLElement | SVGSVGElement>, chosen: string, id?: string) => {
-    e.stopPropagation()
-    setTarget(chosen)
-    setChosenLabel(chosen)
-    if (id) {
-      setCurrAddingNetworkId(id)
-    }
-  }
+  // const openModule = (e: React.MouseEvent<HTMLElement | SVGSVGElement>, chosen: string, id?: string) => {
+  //   e.stopPropagation()
+  //   setTarget(chosen)
+  //   setChosenLabel(chosen)
+  //   if (id) {
+  //     setCurrAddingNetworkId(id)
+  //   }
+  // }
 
   // const handleOnContractSave = async (data: CreateNewContract) => {
   //   const { error, contract } = await trackNewContract(data)
@@ -341,38 +341,33 @@ export default function SearchBar() {
   // }
 
   return (
-    <div className="flex flex-row w-full bg-[#19191A] text-white py-2 pl-5 sm:px-5 sm:py-2  border-b border-b-[#232326] z-70 ">
-      {/* ----------------------------------LOGO-------------------------------- */}
-      <div className="mt-2">
-        <div className="inline-flex">
-          <PiBugFill
-            className={`bg-light-yellow text-black text-3xl rounded cursor-pointer block float-left mr-2 duration-500`}
-          />
-          <h1 className={`text-white origin-left font-medium text-2xl duration-300`}>Egabee</h1>
-        </div>
+    <div className='mt-40 flex justify-center flex-col '>
+      <div>
+        <p className='font-bold text-5xl text-center mb-5 text-light-yellow '>SEARCH</p>
       </div>
-      {/* ----------------------------------SEARCH-BAR-------------------------------- */}
-      <div className="flex justify-center w-full">
-        <div
-          className={clsx(`relative flex justify-center items-center py-1 px-2 md:w-1/2 w-4/5 
+      <div className="flex justify-center w-full  text-white py-2 pl-5 sm:px-5 sm:py-2  z-70  ">
+        {/* ----------------------------------SEARCH-BAR-------------------------------- */}
+        <div className="flex justify-center w-full">
+          <div
+            className={clsx(`relative flex justify-center items-center py-1 px-2 md:w-1/2 w-4/5 
           border border-light-white rounded-sm gap-x-2 `)}
-        >
-          <div className="flex items-center">
-            <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
-              <Search size={20} />
-            </span>
-          </div>
+          >
+            <div className="flex items-center">
+              <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
+                <Search size={20} />
+              </span>
+            </div>
 
-          <input
-            className={clsx(
-              `p-1 text-white w-full bg-[#19191A] border-none hover:ring-0 focus:outline-none focus:ring-0`
-            )}
-            type="text"
-            placeholder="Search for any transaction or address"
-            // value={searchText}
-            onChange={changeHandler}
-          />
-          {/* {searchText.length > 0 && !error && (
+            <input
+              className={clsx(
+                `p-1 text-white w-full h-12 bg-[#19191A] border-none hover:ring-0 focus:outline-none focus:ring-0`
+              )}
+              type="text"
+              placeholder="Search for any transaction or address"
+              // value={searchText}
+              onChange={changeHandler}
+            />
+            {/* {searchText.length > 0 && !error && (
             <div className="max-h-44 overflow-y-auto  yellow-scroll   absolute left-0 top-[105%] border border-light-white border-t-0  shadow-black shadow-md py-1 w-full bg-[#19191A]  rounded-b-sm">
               {searchResults?.length > 0 ? (
                 searchResults.map((item: any, i: number) => (
@@ -491,10 +486,10 @@ export default function SearchBar() {
 
             </div>
           )} */}
+          </div>
         </div>
-      </div>
-      {/* ----------------------------------ADD-BTN-------------------------------- */}
-      {/* <DropdownMenu>
+        {/* ----------------------------------ADD-BTN-------------------------------- */}
+        {/* <DropdownMenu>
         <DropdownMenuTrigger className="border-none focus:border-none focus:ring-0 focus:outline-0">
           {' '}
           <div className="flex text-sm text-supernova gap-1 border border-supernova hover:bg-supernova hover:text-black rounded-md px-2 py-2 mr-3 sm:mr-0">
@@ -535,8 +530,8 @@ export default function SearchBar() {
         </DropdownMenuContent>
       </DropdownMenu> */}
 
-      {/* -------------------------------------------ADD NEW ITEM MODELS ------------------------------------ */}
-      {/* {chosenLabel === 'contracts' && (
+        {/* -------------------------------------------ADD NEW ITEM MODELS ------------------------------------ */}
+        {/* {chosenLabel === 'contracts' && (
         <AddContractModal
           defaultAddress={searchText}
           defaultChainId={supportedNetworks.find(({ id }) => id === searchResults[0]?.networkId)?.chainId}
@@ -575,6 +570,7 @@ export default function SearchBar() {
           closeModal={() => setChosenLabel('')}
         />
       )} */}
+      </div>
     </div>
   )
 }

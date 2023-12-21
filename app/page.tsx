@@ -4,9 +4,10 @@ import React, { useEffect, useState } from 'react'
 
 import { Token, Contract } from '@/lib/types'
 import { DataTable } from '@/components/ui/data-table'
-import { columns } from './columns'
+// import { columns } from './columns'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import SearchBar from '@/components/topbar/search-bar'
+import SearchBar from '@/components/search-bar'
+import SiteHeader from '@/components/siteHeader'
 
 function getNetworkName(networkId: string) {
   return networkId === '527339fa-ca4b-4eb0-8b6a-a53a6e5fac25' ? 'Coreum(mainnet)' : 'Coreum(testnet)'
@@ -26,130 +27,58 @@ export default function Home() {
   const [key, setKey] = React.useState('contracts')
 
   // const Fetchdata = (data: string) => {
-  React.useEffect(() => {
-    if (key === 'contracts') {
-      const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
+  // React.useEffect(() => {
+  //   if (key === 'contracts') {
+  //     const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
 
-      const getdata = async () => {
-        const resp = await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)
-        const data: Contract[] = resp.data
+  //     const getdata = async () => {
+  //       const resp = await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)
+  //       const data: Contract[] = resp.data
 
-        console.log(data)
-        setData(
-          data.map(({ contractAddress, id, contractName }, index) => ({
-            id: index.toString(),
-            address: contractAddress,
-            name: contractName,
-            network: getNetworkName(networkId),
-          }))
-        )
-      }
+  //       console.log(data)
+  //       setData(
+  //         data.map(({ contractAddress, id, contractName }, index) => ({
+  //           id: index.toString(),
+  //           address: contractAddress,
+  //           name: contractName,
+  //           network: getNetworkName(networkId),
+  //         }))
+  //       )
+  //     }
 
-      getdata()
-    } else if (key === 'tokens') {
-      const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
-      const getdata = async () => {
-        const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
-        setData(
-          data
-            .filter((item) => item.symbol !== 'ucore')
-            .map(({ id, name, networkId, tokenAddress }, index) => ({
-              id: index.toString(),
-              name: name,
-              address: tokenAddress,
-              network: getNetworkName(networkId),
-            }))
-        )
-      }
-      getdata()
-    }
-    // else if (selectnft == true) {
-    //   const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
-    //   const getdata = async () => {
-    //     const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
-    //     setData(
-    //       data.map(({ id, name, networkId, tokenAddress }) => ({
-    //         id: id,
-    //         name: name,
-    //         address: tokenAddress,
-    //         network: networkId,
-    //       }))
-    //     )
-    //   }
-    //   getdata();
+  //     getdata()
+  //   } else if (key === 'tokens') {
+  //     const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
+  //     const getdata = async () => {
+  //       const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
+  //       setData(
+  //         data
+  //           .filter((item) => item.symbol !== 'ucore')
+  //           .map(({ id, name, networkId, tokenAddress }, index) => ({
+  //             id: index.toString(),
+  //             name: name,
+  //             address: tokenAddress,
+  //             network: getNetworkName(networkId),
+  //           }))
+  //       )
+  //     }
+  //     getdata()
+  //   }
 
-    // }
-  }, [selectConteract, selectToken, useEndpoint, networkId, key])
+  // }, [selectConteract, selectToken, useEndpoint, networkId, key])
 
-  const SelectApi = (api: string) => {
-    if (api === 'contract') {
-      setSelectContract(true)
-      setSelectToken(false)
-    } else if (api === 'token') {
-      setSelectToken(true)
-      setSelectContract(false)
-    }
-    // else if (api === "nft") {
 
-    //   setSelectnft(true)
-    //   setSelectContract(false)
-    // }
-  }
 
   return (
-    <> <div className=" flex flex-col flex-1 overflow-y-scroll overflow-x-hidden scrollbar-thin scrollbar-thumb-supernova scrollbar-track-mmist">
-      <div className="w-full z-[1000] fixed top-0 left-0">
+
+    <div className="relative flex min-h-screen flex-col overflow-hidden">
+      <SiteHeader />
+      <div className=''>
         <SearchBar />
       </div>
     </div>
-      <div className="py-2 px-4 mt-20  ">
-        <div className="container">
-          <div className="flex justify-end mb-4 gap-2">
-            {/* <div className="flex justify-end">
-          </div> */}
-            <div className="flex justify-end">
-              <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
-                <SelectTrigger
-                  className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 
-                rounded bg-transparent text-light-yellow  hover:text-black  border-light-yellow  hover:bg-light-yellow-20 duration-100"
-                >
-                  <SelectValue placeholder="Select Network" />
-                </SelectTrigger>
-                <SelectContent className="shadow-lg">
-                  <SelectItem value="527339fa-ca4b-4eb0-8b6a-a53a6e5fac25" className="cursor-pointer">
-                    Coreum Mainnet
 
-                  </SelectItem>
-                  <SelectItem value="27a28106-27ae-4bec-a956-f38bed27d84a">Coreum testnet</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
 
-            <div className="flex justify-end">
-              <Select defaultValue={key} onValueChange={setKey}>
-                <SelectTrigger
-                  className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 text-black border-none
-                rounded bg-light-yellow hover:bg-light-yellow-20 duration-100 "
-                >
-                  <SelectValue placeholder="Select Type" />
-                </SelectTrigger>
-                <SelectContent className=" shadow-lg   ">
-                  <SelectItem value="contracts" className="cursor-pointer">
-                    Contracts
-                  </SelectItem>
-                  <SelectItem value="tokens">Tokens</SelectItem>
-                  <SelectItem value="nfts">NFTs</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-
-          {/* <hr className='horizontal-line my-9' /> */}
-
-          <DataTable columns={columns} data={Data} onRowClick={() => { }} />
-        </div>
-      </div>
-    </>
 
   )
 }
