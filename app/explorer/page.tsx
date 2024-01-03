@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { Token, Contract } from "@/lib/types";
@@ -29,22 +29,22 @@ export default function Explorer() {
   const router = useRouter();
 
   const [showModal, setShowModal] = useState(false);
-  const [selectConteract, setSelectContract] = React.useState(false);
-  const [selectToken, setSelectToken] = React.useState(false);
-  const [selectnft, setSelectnft] = React.useState(false);
-  const [useEndpoint, setUseEndpoint] = React.useState("");
-  const [Data, setData] = React.useState<
+  const [selectConteract, setSelectContract] = useState(false);
+  const [selectToken, setSelectToken] = useState(false);
+  const [selectnft, setSelectnft] = useState(false);
+  const [useEndpoint, setUseEndpoint] = useState("");
+  const [Data, setData] = useState<
     { id: string; name: string; address: string; network: string }[]
   >([]);
 
   // Default is mainnet
-  const [networkId, setNetworkId] = React.useState<string>(
+  const [networkId, setNetworkId] = useState<string>(
     "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
   );
 
-  const [key, setKey] = React.useState("contracts");
+  const [key, setKey] = useState("contracts");
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (key === "contracts") {
       const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`;
 

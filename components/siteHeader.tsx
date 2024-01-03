@@ -5,6 +5,7 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import clsx from "clsx";
 import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
+import SearchBar from "./search-bar";
 
 function SiteHeader() {
   const pathname = usePathname();
@@ -28,26 +29,8 @@ function SiteHeader() {
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
       {isExplorerPage && (
-        <div className="flex justify-center w-full">
-          <div
-            className={clsx(`relative flex justify-center items-center py-1 px-2 md:w-1/2 w-4/5 
-          border border-light-white rounded-sm gap-x-2 `)}
-          >
-            <div className="flex items-center">
-              <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
-                <Search size={20} />
-              </span>
-            </div>
-
-            <input
-              className={clsx(
-                `p-1 text-white w-full bg-[#19191A] border-none hover:ring-0 focus:outline-none focus:ring-0`
-              )}
-              type="text"
-              placeholder="Search for any transaction or address"
-              value={""}
-            />
-          </div>
+        <div className="px-2 md:w-3/4 w-4/5 mx-auto">
+          <SearchBar mainSearch={false} />
         </div>
       )}
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
