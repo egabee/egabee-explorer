@@ -3,10 +3,7 @@ export interface Metadata {
   year: number;
 }
 
-export interface CombinedNft {
-  userNft: UserNft;
-  nft: Nft;
-}
+
 export interface Nft {
   class_id: string;
   created_at: string;
@@ -23,15 +20,7 @@ export interface Nft {
   updated_at: string;
 }
 
-export interface UserNft {
-  created_at: string;
-  id: string;
-  name: string;
-  nft_id: string;
-  project_id: string;
-  updated_at: string;
-  selected: boolean;
-}
+
 
 export const isValidNftData = (searchText: string) => {
   const maxNetworkLength = 10;

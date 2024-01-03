@@ -7,7 +7,3 @@ export type Network = {
   createdAt: string;
   explorer: string;
 };
-
-
-
-export type TrackedNetwork = Network & { title: string };
