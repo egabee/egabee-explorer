@@ -23,27 +23,16 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   const { searchText, setSearchText } = useSearchContext();
 
   const [searchResults, setSearchResults] = useState<any[]>([]);
-  const [supportedNetworksResults, setSupportedNetworksResults] = useState<
-    Network[]
-  >([]);
 
-  const [Networks, setNetworks] = useState<Network[]>([]);
 
-  const [chosenLabel, setChosenLabel] = useState<string>("");
   const [target, setTarget] = useState<string>("");
 
   const { data, error, isLoading } = useSearch(key);
 
-  const {
-    data: networksData,
-    error: networksError,
-    isLoading: chainsIsLoading,
-  } = useChains();
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKey("");
     setSearchResults([]);
-    setSupportedNetworksResults([]);
     setSearchText(e.target.value.trim());
   };
 
@@ -73,10 +62,6 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
     setKey("");
   };
 
-  function isSupportedNetwork(id: string) {
-    if (!Networks || !id) return;
-    return Networks?.some((network) => network.id === id);
-  }
 
   // handle search req (set api key search)
   useEffect(() => {
@@ -85,32 +70,12 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
         isValidTxHash(searchText) ||
         isValidWalletAddress(searchText) ||
         isValidContractAddress(searchText) ||
-        isValidTokenAddress(searchText) ||
-        isSupportedNetwork(supportedNetworksResults[0]?.id)
-      );
+        isValidTokenAddress(searchText) 
+      )
     };
 
     if (searchText && isValidKey(searchText)) {
       setKey(searchText);
-    } else if (
-      // if network supported
-      searchText &&
-      networksData &&
-      Networks?.some(
-        ({ env, name }) =>
-          name.toLowerCase() == searchText.toLowerCase() ||
-          env.toLowerCase() == searchText.toLowerCase()
-      )
-    ) {
-      // find the network which the user searching for
-      setSupportedNetworksResults(
-        networksData &&
-          Networks?.filter(
-            ({ env, name }) =>
-              name.toLowerCase() == searchText.toLowerCase() ||
-              env.toLowerCase() == searchText.toLowerCase()
-          )!
-      );
     } else {
       console.log("wrong search input");
     }
@@ -130,11 +95,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
     }
   }, [data]);
 
-  useEffect(() => {
-    if (networksData) {
-      setNetworks(networksData);
-    }
-  }, [networksData]);
+
 
   return (
     <div
@@ -182,30 +143,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
                 </p>
               </div>
             ))
-          ) : // else if its network name or env and user already following it  (no search data from api)
-
-          supportedNetworksResults?.length ? (
-            supportedNetworksResults.map(({ id, name, env, chainId }, i) => {
-              return (
-                <div
-                  key={i}
-                  onClick={() => navToItem(id)}
-                  className={`px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full cursor-pointer
-
-                      ${i % 2 ? "bg-[#19191A]" : "bg-shark-40"}
-                      `}
-                >
-                  <div>
-                    <div className="flex items-start">{name}</div>
-                    <div className="flex flex-row items-center gap-x-3 text-xs mt-1">
-                      <NetworkEnv env={env} />
-                      <div>{chainId}</div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
+          ) :(
             <div className="flex items-center justify-center h-full">
               {isLoading ? (
                 <div className="py-2">

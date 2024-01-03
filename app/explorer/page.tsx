@@ -15,6 +15,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import GoBack from "@/components/ui/go-back";
+import { useSearchContext } from "@/context/SearchContext";
 
 function getNetworkName(networkId: string) {
   return networkId === "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
@@ -117,11 +118,12 @@ export default function Explorer() {
     //   setSelectContract(false)
     // }
   };
+  const { searchText, setSearchText } = useSearchContext();
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-hidden" >
       <SiteHeader />
-      <div className="py-2 px-4 mt-10  ">
+      <div className="py-2 px-4 mt-10" onClick={()=>setSearchText('')}>
         <div className="container">
           <div className="flex justify-between items-center mb-4 gap-2">
             {isExplorerPage && (

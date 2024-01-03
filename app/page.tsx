@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import SearchBar from "@/components/search-bar";
 import SiteHeader from "@/components/siteHeader";
+import { useSearchContext } from "@/context/SearchContext";
 
 function getNetworkName(networkId: string) {
   return networkId === "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
@@ -78,6 +79,7 @@ export default function Home() {
   //   }
 
   // }, [selectConteract, selectToken, useEndpoint, networkId, key])
+  const { searchText, setSearchText } = useSearchContext();
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
