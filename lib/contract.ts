@@ -8,6 +8,20 @@ export interface Contract {
   createdAt: string;
   updatedAt: string;
 }
+export interface UserContract {
+  id: string;
+  name: string;
+  userId: string;
+  contractId: string;
+  createdAt: string;
+  updatedAt: string;
+  selected: boolean;
+}
+
+export interface CombinedContract {
+  userContract: UserContract;
+  contract: Contract;
+}
 
 export const isValidContractAddress = (searchText: string) => {
   const maxNetworkLength = 10; // Maximum length for the network prefix

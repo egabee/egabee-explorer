@@ -6,14 +6,12 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { Search } from "lucide-react";
 import { useSearch } from "@/hooks/useSearch";
-import { Network } from "@/lib/network";
 import { isValidContractAddress } from "@/lib/contract";
-import { isValidTokenAddress, isValidWalletAddress } from "@/lib/token";
+import { isValidTokenAddress } from "@/lib/token";
 import { useSearchContext } from "@/context/SearchContext";
 import { isValidTxHash } from "@/lib/transaction";
-import NetworkEnv from "./ui/network-env";
 import Spinner from "./ui/spinner";
-import { useChains } from "@/hooks/useChains";
+import { isValidWalletAddress } from "@/lib/wallet";
 
 export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   const router = useRouter();
@@ -37,24 +35,18 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   };
 
   const navToItem = (ID: string) => {
-    if (!target) return;
+    if (!target || !ID) return;
 
-    // if (ID) {
-    //   if (target == "transactions" && ID) {
-    //     router.push(`/dashboard/view?target=${target}&key=${ID}`);
-    //   } else if (target !== "transactions" && target !== "networks" && key) {
-    //     router.push(`/dashboard/view?target=${target}&key=${key}`);
-    //   } else if (target == "networks") {
-    //     router.push(`/dashboard/view?target=${target}&key=${ID}`);
-    //   }
+    if (target == "transactions" && ID) {
+      router.push(`/view?target=${target}&key=${ID}`);
+    } else if (target !== "transactions" && target !== "networks" && key) {
+      router.push(`/view?target=${target}&key=${key}`);
+    } else if (target == "networks") {
+      router.push(`/view?target=${target}&key=${ID}`);
+    }
 
-    //   setSearchText("");
-    //   setSearchResults([]);
-    // } else {
-    //   router.push(`/dashboard/${target}?id=${searchText}`);
-    //   // setSearchText('')
-    //   setSearchResults([]);
-    // }
+      setSearchText("");
+      setSearchResults([]);
   };
 
   const clearSearch = () => {
@@ -95,7 +87,22 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
     }
   }, [data]);
 
+  // set target in url
+  useEffect(() => {
+    if (searchResults[0]?.contractAddress) {
+      setTarget('contracts')
+    }
+    if (searchResults[0]?.tokenAddress) {
+      setTarget('tokens')
+    }
+    if (searchResults[0] && Object.keys(searchResults[0]).length === 1 && 'id' in searchResults[0]) {
+      setTarget('wallets')
+    }
 
+    if (isValidTxHash(searchText)) {
+      setTarget('transactions')
+    }
+  }, [data, searchResults, searchText])
 
   return (
     <div
