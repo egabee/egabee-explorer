@@ -122,7 +122,6 @@ export default function Explorer() {
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden" >
-      <SiteHeader />
       <div className="py-2 px-4 mt-10" onClick={()=>setSearchText('')}>
         <div className="container">
           <div className="flex justify-between items-center mb-4 gap-2">

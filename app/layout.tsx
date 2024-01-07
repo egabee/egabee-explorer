@@ -36,7 +36,8 @@ export default async function RootLayout({
         ))}
       </Head> */}
       <SearchProvider>
-        <body className={`bg-woodsmoke text-gray-300`}>{children}</body>
+        <body className={`bg-woodsmoke text-gray-300`}>
+          {children}</body>
       </SearchProvider>
     </html>
   );

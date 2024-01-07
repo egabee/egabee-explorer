@@ -106,7 +106,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
 
   return (
     <div
-      className={clsx(`relative flex justify-center items-center py-1 px-2 md:w-3/4 w-4/5 mx-auto
+      className={clsx(`z-[9999] relative flex justify-center items-center py-1 px-2 md:w-3/4 w-4/5 mx-auto
           border border-light-white rounded-sm gap-x-2 `)}
     >
       <div className="flex items-center">
@@ -133,7 +133,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
               <div
                 key={i}
                 onClick={() => navToItem(item.id)}
-                className={`px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full
+                className={` px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full
                       ${i % 2 ? "bg-[#19191A]" : "bg-shark-40"} cursor-pointer 
                       `}
               >

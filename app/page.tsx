@@ -81,12 +81,10 @@ export default function Home() {
   //   }
 
   // }, [selectConteract, selectToken, useEndpoint, networkId, key])
-  const { searchText, setSearchText } = useSearchContext();
-  const isExplorerPage = pathname === "/explorer";
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
-      <SiteHeader  />
+      <SiteHeader hideSearch={true} />
       <div className="flex justify-center w-full  text-white py-2 pl-5 sm:px-5 sm:py-2  z-70  ">
         <div className="mt-40 flex justify-center flex-col ">
           <p className="font-bold text-5xl text-center mb-6 text-light-yellow ">
