@@ -7,7 +7,7 @@ import { Search } from "lucide-react";
 import { usePathname } from "next/navigation";
 import SearchBar from "./search-bar";
 
-function SiteHeader() {
+function SiteHeader({}) {
   const pathname = usePathname();
   const isExplorerPage = pathname === "/explorer";
   return (

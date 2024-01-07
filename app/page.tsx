@@ -15,6 +15,7 @@ import {
 import SearchBar from "@/components/search-bar";
 import SiteHeader from "@/components/siteHeader";
 import { useSearchContext } from "@/context/SearchContext";
+import { usePathname } from "next/navigation";
 
 function getNetworkName(networkId: string) {
   return networkId === "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
@@ -36,6 +37,7 @@ export default function Home() {
   const [networkId, setNetworkId] = React.useState<string>(
     "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
   );
+  const pathname = usePathname();
 
   const [key, setKey] = React.useState("contracts");
 
@@ -80,10 +82,11 @@ export default function Home() {
 
   // }, [selectConteract, selectToken, useEndpoint, networkId, key])
   const { searchText, setSearchText } = useSearchContext();
+  const isExplorerPage = pathname === "/explorer";
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
-      <SiteHeader />
+      <SiteHeader  />
       <div className="flex justify-center w-full  text-white py-2 pl-5 sm:px-5 sm:py-2  z-70  ">
         <div className="mt-40 flex justify-center flex-col ">
           <p className="font-bold text-5xl text-center mb-6 text-light-yellow ">

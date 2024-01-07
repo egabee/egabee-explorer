@@ -2,8 +2,7 @@
 import GasConsumption from '@/components/overview/gas-consumption'
 import TotalTransaction from '@/components/overview/total-transactions'
 import { TokensInsights } from '@/lib/types'
-import { CombinedWallet } from '@/lib/wallet'
-import { ArrowLeftRight, Globe, Pencil, Trash } from 'lucide-react'
+import { ArrowLeftRight, Pencil, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { formatNetworkUnit, formatWalletBalance } from '@/lib/utils'
@@ -37,19 +36,6 @@ export default function WalletDetailsPage({
         <div className="flex flex-row gap-x-4">
           <div className="border border-shark-tint-30 border-opacity-50 w-full text-xs md:text-sm lg:text-base rounded bg-shark-40">
             <div className="flex flex-col gap-y-3 py-4 mx-6">
-              <div className="flex justify-between">
-                <div className="font-bold">Network: </div>
-                <div className="flex flex-row items-center rounded-2xl py-1 px-3 bg-light-white text-iron">
-                  <div className="capitalize font-light">{selectedRow?.network?.env || selectedRow?.env}</div>
-                  <div className="ml-1">
-                    <Globe />
-                  </div>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="font-semibold">Chain ID:</div>
-                <div className="font-light">{selectedRow?.network?.chainId || selectedRow?.chainId}</div>
-              </div>
               <div className="flex justify-between">
                 <div className="font-semibold">Wallet Address:</div>
                 <div className="font-light">{selectedRow?.wallet?.address || selectedRow?.id}</div>

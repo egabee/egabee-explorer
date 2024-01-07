@@ -38,11 +38,11 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
     if (!target || !ID) return;
 
     if (target == "transactions" && ID) {
-      router.push(`/view?target=${target}&key=${ID}`);
+      router.push(`/explorer/view?target=${target}&key=${ID}`);
     } else if (target !== "transactions" && target !== "networks" && key) {
-      router.push(`/view?target=${target}&key=${key}`);
+      router.push(`/explorer/view?target=${target}&key=${key}`);
     } else if (target == "networks") {
-      router.push(`/view?target=${target}&key=${ID}`);
+      router.push(`/explorer/view?target=${target}&key=${ID}`);
     }
 
       setSearchText("");

@@ -2,14 +2,12 @@
 import GasConsumption from '@/components/overview/gas-consumption'
 import SuccessRate from '@/components/overview/success-rate'
 import TotalTransaction from '@/components/overview/total-transactions'
-import { Network } from '@/lib/network'
-import { ArrowLeftRight, FileUp, Globe, Pencil, Trash } from 'lucide-react'
+import { ArrowLeftRight, FileUp, Pencil, Trash } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 
 interface props {
   insights: any[]
-  networks: Network[]
   selectedRow: any
   setShowRenameModal: React.Dispatch<boolean>
   setShowDeleteModal: React.Dispatch<boolean>
@@ -19,7 +17,6 @@ interface props {
 
 export default function ContractDetailsPage({
   insights,
-  networks,
   selectedRow,
   setShowRenameModal,
   setShowDeleteModal,
@@ -39,27 +36,6 @@ export default function ContractDetailsPage({
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         <div className="border border-shark-tint-30 border-opacity-50 py-2 w-full h-fit lg:h-60 text-xs md:text-sm lg:text-base rounded bg-shark-40">
           <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
-            <div className="flex justify-between">
-              <div className="font-bold">Network: </div>
-              <div className="flex flex-row items-center rounded-2xl py-1 px-3 bg-light-white text-iron">
-                <div className="capitalize font-light">
-                  {networks.find(({ id }) => id === selectedRow?.contract?.networkId || id === selectedRow?.networkId)
-                    ?.env || ''}
-                </div>
-                <div className="ml-1">
-                  <Globe />
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-between">
-              <div className="font-semibold">Chain ID:</div>
-              <div className="font-light">
-                {
-                  networks.find((n) => n.id === selectedRow?.contract?.networkId || n.id === selectedRow?.networkId)
-                    ?.chainId
-                }
-              </div>
-            </div>
             <div className="flex flex-row justify-between gap-2">
               <div className="min-w-fit font-semibold">Contract address: </div>
               <div className="truncate w-fit font-light">
