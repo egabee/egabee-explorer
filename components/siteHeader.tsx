@@ -1,14 +1,10 @@
 import React from "react";
 import { PiBugFill } from "react-icons/pi";
 import Link from "next/link";
-import { Button, buttonVariants } from "@/components/ui/button";
-import clsx from "clsx";
-import { Search } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import SearchBar from "./search-bar";
 
-function SiteHeader() {
-  const pathname = usePathname();
-  const isExplorerPage = pathname === "/explorer";
+function SiteHeader({ isExplorerPage , hideSearch }: { isExplorerPage?: boolean , hideSearch: boolean }) {
   return (
     <div className="flex flex-row items-center w-full bg-[#19191A] text-white py-2 pl-5 sm:px-5 sm:py-2  border-b border-b-[#232326] z-70 ">
       {/* ----------------------------------LOGO-------------------------------- */}
@@ -27,29 +23,9 @@ function SiteHeader() {
         </div>
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
-      {isExplorerPage && (
-        <div className="flex justify-center w-full">
-          <div
-            className={clsx(`relative flex justify-center items-center py-1 px-2 md:w-1/2 w-4/5 
-          border border-light-white rounded-sm gap-x-2 `)}
-          >
-            <div className="flex items-center">
-              <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
-                <Search size={20} />
-              </span>
-            </div>
-
-            <input
-              className={clsx(
-                `p-1 text-white w-full bg-[#19191A] border-none hover:ring-0 focus:outline-none focus:ring-0`
-              )}
-              type="text"
-              placeholder="Search for any transaction or address"
-              value={""}
-            />
-          </div>
-        </div>
-      )}
+        {!hideSearch && <div className="px-2 md:w-3/4 w-4/5 mx-auto">
+          <SearchBar mainSearch={false} />
+        </div>}
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
       <div className="mr-5 flex flex-1 items-center justify-end space-x-4">
         <nav className="flex items-center space-x-1">

@@ -34,3 +34,23 @@ export interface Token {
   updatedAt: string;
   metadata: TokenMetadata | null;
 }
+
+
+export type Insight = {
+  successRate: {
+    change: number
+    value: number
+  }
+  txCount: {
+    change: number
+    value: number
+  }
+  gasConsumption: {
+    change: bigint
+    value: number
+  }
+}
+
+export type ContractInsight = Insight
+
+export type TokensInsights = Insight

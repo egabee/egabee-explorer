@@ -1,28 +1,32 @@
-import '@/styles/globals.css'
+import { SearchProvider } from "@/context/SearchContext";
+import "@/styles/globals.css";
 // import { Inter } from 'next/font/google'
 
 // import Head from 'next/head'
-import { Metadata } from 'next'
-
+import { Metadata } from "next";
 
 interface Icon {
-  rel: string
-  url: string
+  rel: string;
+  url: string;
 }
 
 interface MyMetadata extends Metadata {
-  icons: Icon[]
+  icons: Icon[];
 }
 
 // const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: MyMetadata = {
-  title: 'Egabee - Explorer',
-  description: 'Track your blockchains, smart contracts and tokens',
-  icons: [{ rel: 'icon', url: '/egabee.png' }],
-}
+  title: "Egabee - Explorer",
+  description: "Track your blockchains, smart contracts and tokens",
+  icons: [{ rel: "icon", url: "/egabee.png" }],
+};
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en" className="yellow-scroll">
       {/* <Head /> should not be used in app Directory*/}
@@ -31,10 +35,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <link key={icon.rel} rel={icon.rel} href={icon.url} />
         ))}
       </Head> */}
-      <body className={`bg-woodsmoke text-gray-300`}>
-        {children}
-
-      </body>
+      <SearchProvider>
+        <body className={`bg-woodsmoke text-gray-300`}>
+          {children}</body>
+      </SearchProvider>
     </html>
-  )
+  );
 }
