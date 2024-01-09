@@ -50,7 +50,7 @@ function SiteHeader({
               </div>
             </Link>
           )}
-          <Link  href={"https://www.egabee.com/dashboard/analytics"}>
+          <Link  href={"https://www.egabee.com/login"}>
             <div className="flex items-center  ">
               <Button
                 variant={"outline"}
