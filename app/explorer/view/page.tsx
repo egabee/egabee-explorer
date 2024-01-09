@@ -18,6 +18,8 @@ import TransactionDetails from "./transaction-details";
 import ContractDetailsPage from "./contract-details";
 import WalletDetailsPage from "./wallet-details";
 import Spinner from "@/components/ui/spinner";
+import SiteHeader from "@/components/siteHeader";
+
 
 export default function View() {
   const searchParams = useSearchParams();
@@ -136,16 +138,19 @@ export default function View() {
       );
     } else {
       return (
-        <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
-          <div
-            onClick={() => {
-              router.back();
-            }}
-            className="cursor-pointer w-12"
-          >
-            <GoBack title={""} />
+        <div>
+          <SiteHeader hideSearch={false} isExplorerPage={false} />
+          <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
+            <div
+              onClick={() => {
+                router.back();
+              }}
+              className="cursor-pointer w-12"
+            >
+              <GoBack title={""} />
+            </div>
+            <TransactionDetails details={data?.tx} />
           </div>
-          <TransactionDetails details={data?.tx} />
         </div>
       );
     }
@@ -160,23 +165,26 @@ export default function View() {
       );
     } else {
       return (
-        <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
-          <div
-            onClick={() => {
-              router.back()
-            }}
-            className="cursor-pointer w-12"
-          >
-            <GoBack title={""} />
+        <div>
+          <SiteHeader hideSearch={false} isExplorerPage={false} />
+          <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
+            <div
+              onClick={() => {
+                router.back();
+              }}
+              className="cursor-pointer w-12"
+            >
+              <GoBack title={""} />
+            </div>
+            <TokenDetailsPage
+              tokenDetails={tokenDetails}
+              insights={insights}
+              selectedRow={token}
+              setShowRenameModal={() => {}}
+              setShowDeleteModal={() => {}}
+              added={false}
+            />
           </div>
-          <TokenDetailsPage
-            tokenDetails={tokenDetails}
-            insights={insights}
-            selectedRow={token}
-            setShowRenameModal={() => {}}
-            setShowDeleteModal={() => {}}
-            added={false}
-          />
         </div>
       );
     }
@@ -191,23 +199,26 @@ export default function View() {
       );
     } else {
       return (
-        <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
-          <div
-            onClick={() => {
-              router.back()
-            }}
-            className="cursor-pointer w-12"
-          >
-            <GoBack title={""} />
+        <div>
+          <SiteHeader hideSearch={false} isExplorerPage={false} />
+          <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
+            <div
+              onClick={() => {
+                router.back();
+              }}
+              className="cursor-pointer w-12"
+            >
+              <GoBack title={""} />
+            </div>
+            <ContractDetailsPage
+              insights={insights}
+              selectedRow={contract}
+              setShowRenameModal={() => {}}
+              setShowDeleteModal={() => {}}
+              setShowUploadJSONModal={() => {}}
+              added={false}
+            />
           </div>
-          <ContractDetailsPage
-            insights={insights}
-            selectedRow={contract}
-            setShowRenameModal={() => {}}
-            setShowDeleteModal={() => {}}
-            setShowUploadJSONModal={() => {}}
-            added={false}
-          />
         </div>
       );
     }
@@ -221,23 +232,26 @@ export default function View() {
         </div>
       );
     } else {
-      return (
-        <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
-          <div
-            onClick={() => {
-              router.back()
-            }}
-            className="cursor-pointer w-12"
-          >
-            <GoBack title={""} />
+      return ( 
+        <div>
+          <SiteHeader hideSearch={false} isExplorerPage={false} />
+          <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
+            <div
+              onClick={() => {
+                router.back();
+              }}
+              className="cursor-pointer w-12"
+            >
+              <GoBack title={""} />
+            </div>
+            <WalletDetailsPage
+              insights={insights}
+              selectedRow={wallet}
+              setShowRenameModal={() => {}}
+              setShowDeleteModal={() => {}}
+              added={false}
+            />
           </div>
-          <WalletDetailsPage
-            insights={insights}
-            selectedRow={wallet}
-            setShowRenameModal={() => {}}
-            setShowDeleteModal={() => {}}
-            added={false}
-          />
         </div>
       );
     }

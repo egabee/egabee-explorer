@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { Token, Contract } from "@/lib/types";
 import { DataTable } from "@/components/ui/data-table";
 import { columns } from "./columns";
-import SiteHeader from "@/components/siteHeader";
 import {
   Select,
   SelectContent,
@@ -16,6 +15,8 @@ import {
 } from "@/components/ui/select";
 import GoBack from "@/components/ui/go-back";
 import { useSearchContext } from "@/context/SearchContext";
+import SiteHeader from "@/components/siteHeader";
+
 
 function getNetworkName(networkId: string) {
   return networkId === "527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
@@ -122,6 +123,7 @@ export default function Explorer() {
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden" >
+      <SiteHeader hideSearch={false} isExplorerPage={true} />
       <div className="py-2 px-4 mt-10" onClick={()=>setSearchText('')}>
         <div className="container">
           <div className="flex justify-between items-center mb-4 gap-2">
