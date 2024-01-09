@@ -3,6 +3,7 @@ import { PiBugFill } from "react-icons/pi";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./search-bar";
+import { LayoutDashboardIcon } from "lucide-react";
 
 function SiteHeader({ isExplorerPage , hideSearch }: { isExplorerPage?: boolean , hideSearch: boolean }) {
   return (
@@ -28,7 +29,7 @@ function SiteHeader({ isExplorerPage , hideSearch }: { isExplorerPage?: boolean 
         </div>}
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
       <div className="mr-5 flex flex-1 items-center justify-end space-x-4">
-        <nav className="flex items-center space-x-1">
+        <nav className="flex items-center space-x-3">
           {!isExplorerPage && (
             <Link href={"/explorer"}>
               <div className="flex items-center">
@@ -41,6 +42,17 @@ function SiteHeader({ isExplorerPage , hideSearch }: { isExplorerPage?: boolean 
               </div>
             </Link>
           )}
+                            <Link href={'https://www.egabee.com/dashboard/analytics'}>
+                    <div className="flex items-center  ">
+                      <Button
+                        variant={'outline'}
+                        className="flex gap-x-2 bg-transparent text-supernova rounded hover:bg-dark-yellow hover:bg-opacity-25 hover:text-supernova border border-light-yellow"
+                      >
+                        <p>Go to Dashboard</p>
+                        <LayoutDashboardIcon size={16} />
+                      </Button>
+                    </div>
+                  </Link>
         </nav>
       </div>
     </div>
