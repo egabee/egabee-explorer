@@ -1,4 +1,3 @@
-import SiteHeader from "@/components/siteHeader";
 
 export default async function ExplorerLayout({
   children,
@@ -7,7 +6,6 @@ export default async function ExplorerLayout({
 }) {
   return (
     <div className={`bg-woodsmoke text-gray-300`}>
-      <SiteHeader hideSearch={false} />
       {children}
     </div>
   );
