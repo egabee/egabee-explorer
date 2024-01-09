@@ -107,7 +107,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   return (
     <div
       className={clsx(`z-[9999] relative flex justify-center items-center py-1 px-2 md:w-3/4 w-4/5 mx-auto
-          border border-light-white rounded-sm gap-x-2 `)}
+          border border-light-white rounded-sm gap-x-2  `)}
     >
       <div className="flex items-center">
         <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
