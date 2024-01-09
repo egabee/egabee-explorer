@@ -20,6 +20,7 @@ import WalletDetailsPage from "./wallet-details";
 import Spinner from "@/components/ui/spinner";
 import SiteHeader from "@/components/siteHeader";
 
+
 export default function View() {
   const searchParams = useSearchParams();
   const router = useRouter();

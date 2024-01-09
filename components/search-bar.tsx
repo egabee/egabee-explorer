@@ -54,6 +54,10 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
     setKey("");
   };
 
+  const clearSearch = () => {
+    setSearchText("");
+    setKey("");
+  };
 
   // handle search req (set api key search)
   useEffect(() => {
