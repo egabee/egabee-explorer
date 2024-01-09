@@ -231,7 +231,7 @@ export default function View() {
         </div>
       );
     } else {
-      return (
+      return ( 
         <div>
           <SiteHeader hideSearch={false} isExplorerPage={false} />
           <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
