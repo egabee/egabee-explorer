@@ -27,13 +27,7 @@ export default function TokenDetailsPage({
 
   return (
     <div className="flex flex-col gap-y-6 py-2 text-athens-gray duration-300">
-      <div className="grid  gap-1 md:grid-cols-3 grid-cols-1 mt-4 text-mmist">
-        <SuccessRate insightData={insights}></SuccessRate>
-        <GasConsumption insightData={insights}></GasConsumption>
-        <TotalTransaction insightData={insights}></TotalTransaction>
-      </div>
-      {/*Token details */}
-      <div className="grid grid-cols-1 gap-4">
+      <div className="grid grid-cols-1 gap-4 mt-5">
         <div className="flex gap-y-3 gap-x-4">
           <div className="border border-shark-tint-30 border-opacity-50 w-full h-fit md:h-60 text-xs md:text-sm lg:text-base rounded bg-shark-40">
             <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
