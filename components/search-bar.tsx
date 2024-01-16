@@ -16,7 +16,7 @@ import { isValidWalletAddress } from "@/lib/wallet";
 export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   const router = useRouter();
 
-  const [key, setKey] = useState<string>("");
+  const [key, setKey] = useState<string>(""); 
 
   const { searchText, setSearchText } = useSearchContext();
 
