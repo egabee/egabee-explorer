@@ -16,6 +16,8 @@ import {
 import GoBack from "@/components/ui/go-back";
 import { useSearchContext } from "@/context/SearchContext";
 import SiteHeader from "@/components/siteHeader";
+import { createUrl } from "@/lib/fetcher";
+import { Nft } from "@/lib/nft";
 
 
 function getNetworkName(networkId: string) {
@@ -30,11 +32,7 @@ export default function Explorer() {
 
   const router = useRouter();
 
-  const [showModal, setShowModal] = useState(false);
-  const [selectConteract, setSelectContract] = useState(false);
-  const [selectToken, setSelectToken] = useState(false);
-  const [selectnft, setSelectnft] = useState(false);
-  const [useEndpoint, setUseEndpoint] = useState("");
+
   const [Data, setData] = useState<
     { id: string; name: string; address: string; network: string }[]
   >([]);
@@ -46,17 +44,20 @@ export default function Explorer() {
 
   const [key, setKey] = useState("contracts");
 
+
+  
+
   useEffect(() => {
     if (key === "contracts") {
       const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`;
 
       const getdata = async () => {
         const resp = await axios.get(
-          `${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`
+          createUrl(endpoint)
         );
         const data: Contract[] = resp.data;
 
-        console.log(data);
+        // console.log(data);
         setData(
           data.map(({ contractAddress, id, contractName }, index) => ({
             id: index.toString(),
@@ -70,9 +71,10 @@ export default function Explorer() {
       getdata();
     } else if (key === "tokens") {
       const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`;
+
       const getdata = async () => {
         const data: Token[] = await (
-          await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)
+          await axios.get(createUrl(endpoint))
         ).data;
         setData(
           data
@@ -86,40 +88,31 @@ export default function Explorer() {
         );
       };
       getdata();
+
+    } else if (key === "nfts") {
+      const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`;
+
+      const getdata = async () => {
+        const data: Nft[] = await (
+          await axios.get(createUrl(endpoint))
+        ).data;
+        setData(
+          data
+            .filter((item) => item.symbol !== "ucore")
+            .map(({ id, name, network_id, nft_id }, index) => ({
+              id: index.toString(),
+              name: name,
+              address: nft_id,
+              network: getNetworkName(network_id),
+            }))
+        );
+      };
+      getdata();
     }
-    // else if (selectnft == true) {
-    //   const endpoint = "/api/0/explorer/networks/527339fa-ca4b-4eb0-8b6a-a53a6e5fac25/tokens/"
-    //   const getdata = async () => {
-    //     const data: Token[] = await (await axios.get(`${process.env.NEXT_PUBLIC_EGABEE_API}${endpoint}`)).data
-    //     setData(
-    //       data.map(({ id, name, networkId, tokenAddress }) => ({
-    //         id: id,
-    //         name: name,
-    //         address: tokenAddress,
-    //         network: networkId,
-    //       }))
-    //     )
-    //   }
-    //   getdata();
+  }, [networkId, key]);
 
-    // }
-  }, [selectConteract, selectToken, useEndpoint, networkId, key]);
 
-  const SelectApi = (api: string) => {
-    if (api === "contract") {
-      setSelectContract(true);
-      setSelectToken(false);
-    } else if (api === "token") {
-      setSelectToken(true);
-      setSelectContract(false);
-    }
-    // else if (api === "nft") {
-
-    //   setSelectnft(true)
-    //   setSelectContract(false)
-    // }
-  };
-  const { searchText, setSearchText } = useSearchContext();
+  const { setSearchText } = useSearchContext();
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden" >

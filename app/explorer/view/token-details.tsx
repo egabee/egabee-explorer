@@ -1,36 +1,24 @@
 /* eslint-disable max-len */
-import GasConsumption from "@/components/overview/gas-consumption";
-import SuccessRate from "@/components/overview/success-rate";
-import TotalTransaction from "@/components/overview/total-transactions";
 import { TokenDetails } from "@/lib/token";
 import { TokensInsights } from "@/lib/types";
-import { ArrowLeftRight, Pencil, Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
 import React from "react";
 interface props {
   tokenDetails: TokenDetails | null;
   insights: TokensInsights[];
   selectedRow: any;
-  setShowRenameModal: React.Dispatch<React.SetStateAction<boolean>>;
-  setShowDeleteModal: React.Dispatch<React.SetStateAction<boolean>>;
-  added: boolean;
 }
 export default function TokenDetailsPage({
   tokenDetails,
   insights,
   selectedRow,
-  setShowRenameModal,
-  setShowDeleteModal,
-  added,
 }: props) {
-  const router = useRouter();
 
   return (
     <div className="flex flex-col gap-y-6 py-2 text-athens-gray duration-300">
       <div className="grid grid-cols-1 gap-4 mt-5">
         <div className="flex gap-y-3 gap-x-4">
           <div className="border border-shark-tint-30 border-opacity-50 w-full h-fit md:h-60 text-xs md:text-sm lg:text-base rounded bg-shark-40">
-            <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
+            <div className="flex flex-col gap-y-2 py-2 mt-3 mx-6">
               <div className="flex flex-row justify-between">
                 <div className="w-40 font-semibold">Token Denom:</div>
                 <div className="truncate w-fit font-light">
@@ -137,47 +125,6 @@ export default function TokenDetailsPage({
           </div>
         </div>
       </div>
-      {/*Token details */}
-
-      {/*Control buttons */}
-      {added && (
-        <div className="flex flex-row flex-wrap gap-y-4 gap-x-6 mt-4">
-          <div
-            className="control-button-edit cursor-pointer"
-            onClick={() =>
-              router.push(
-                `/dashboard/transactions?address=${selectedRow?.token.tokenAddress}&id=${selectedRow?.userToken.id}`
-              )
-            }
-          >
-            <div className="px-4">
-              <ArrowLeftRight size={16} />
-            </div>
-            <div className="px-4">View Transactions</div>
-          </div>
-          <div
-            className="control-button-edit"
-            onClick={() => setShowRenameModal(true)}
-          >
-            <div>
-              <Pencil size={16} />
-            </div>
-            <div className="px-4">Rename token</div>
-          </div>
-          <div
-            className="control-button-remove"
-            onClick={() => setShowDeleteModal(true)}
-          >
-            <div className="px-4">
-              <Trash size={16} />
-            </div>
-            <div className="px-4">
-              <span>Remove Token</span>
-            </div>
-          </div>
-        </div>
-      )}
-      {/*Control buttons */}
     </div>
   );
 }

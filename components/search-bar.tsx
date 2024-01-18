@@ -12,11 +12,12 @@ import { useSearchContext } from "@/context/SearchContext";
 import { isValidTxHash } from "@/lib/transaction";
 import Spinner from "./ui/spinner";
 import { isValidWalletAddress } from "@/lib/wallet";
+import { isValidNftaddress } from "@/lib/nft";
 
 export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   const router = useRouter();
 
-  const [key, setKey] = useState<string>("");
+  const [key, setKey] = useState<string>(""); 
 
   const { searchText, setSearchText } = useSearchContext();
 
@@ -57,7 +58,8 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
         isValidTxHash(searchText) ||
         isValidWalletAddress(searchText) ||
         isValidContractAddress(searchText) ||
-        isValidTokenAddress(searchText) 
+        isValidTokenAddress(searchText) || 
+        isValidNftaddress(searchText)
       )
     };
 
@@ -96,6 +98,10 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
 
     if (isValidTxHash(searchText)) {
       setTarget('transactions')
+    }
+
+    if (searchResults[0]?.nft_id) {
+      setTarget('nfts')
     }
   }, [data, searchResults, searchText])
 

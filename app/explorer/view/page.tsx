@@ -19,7 +19,9 @@ import ContractDetailsPage from "./contract-details";
 import WalletDetailsPage from "./wallet-details";
 import Spinner from "@/components/ui/spinner";
 import SiteHeader from "@/components/siteHeader";
-
+import { CombinedNft } from "@/lib/nft";
+import NftDetailsPage from "./nft-details";
+import { Network } from "@/lib/network";
 
 export default function View() {
   const searchParams = useSearchParams();
@@ -37,8 +39,11 @@ export default function View() {
 
   const [wallet, setWallet] = useState<CombinedWallet>();
 
+  const [nft, setNft] = useState<CombinedNft>();
+
   const { data, error, isLoading } = useSearch(key!);
 
+  
   useEffect(() => {
     setKey(searchParams.get("key"));
     setTarget(searchParams.get("target"));
@@ -117,6 +122,27 @@ export default function View() {
     }
   }, [data, key, target]);
 
+  // Nfts
+  useEffect(() => {
+    if (key && data?.nfts && target === "nfts") {
+      setNft(data.nfts[0]);
+
+      if (data.nfts[0] ) {
+        const getInsigths = async () => {
+          try {
+            const result = await fetchInsightData(data.nfts[0].nft.nft_id);
+            if (result) {
+              setInsights(result);
+            }
+          } catch (error) {
+            console.error("Error fetching insights data:", error);
+          }
+        };
+        getInsigths();
+      }
+    }
+  }, [data, key, target]);
+
   if (!key) {
     return <></>;
   }
@@ -180,9 +206,6 @@ export default function View() {
               tokenDetails={tokenDetails}
               insights={insights}
               selectedRow={token}
-              setShowRenameModal={() => {}}
-              setShowDeleteModal={() => {}}
-              added={false}
             />
           </div>
         </div>
@@ -210,14 +233,7 @@ export default function View() {
             >
               <GoBack title={""} />
             </div>
-            <ContractDetailsPage
-              insights={insights}
-              selectedRow={contract}
-              setShowRenameModal={() => {}}
-              setShowDeleteModal={() => {}}
-              setShowUploadJSONModal={() => {}}
-              added={false}
-            />
+            <ContractDetailsPage insights={insights} selectedRow={contract} />
           </div>
         </div>
       );
@@ -232,7 +248,7 @@ export default function View() {
         </div>
       );
     } else {
-      return ( 
+      return (
         <div>
           <SiteHeader hideSearch={false} isExplorerPage={false} />
           <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
@@ -244,16 +260,32 @@ export default function View() {
             >
               <GoBack title={""} />
             </div>
-            <WalletDetailsPage
-              insights={insights}
-              selectedRow={wallet}
-              setShowRenameModal={() => {}}
-              setShowDeleteModal={() => {}}
-              added={false}
-            />
+            <WalletDetailsPage insights={insights} selectedRow={wallet} />
           </div>
         </div>
       );
     }
+  }
+  // -----------------------------------------------------------
+  if (key && data?.nfts && nft && target === "nfts") {
+    return (
+      <div>
+        <SiteHeader hideSearch={false} isExplorerPage={false} />
+        <div className="py-12 px-1 md:px-4 mx-2 md:mx-8 w-[95%]">
+          <div
+            onClick={() => {
+              router.back();
+            }}
+            className="cursor-pointer w-12 mb-4"
+          >
+            <GoBack title={""} />
+          </div>
+          <NftDetailsPage
+            insights={insights}
+            selectedRow={nft}
+          />
+        </div>
+      </div>
+    );
   }
 }
