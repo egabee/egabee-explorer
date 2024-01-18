@@ -121,7 +121,7 @@ export default function View() {
       }
     }
   }, [data, key, target]);
-console.log('ddddddddddddddddddddddd',data)
+
   // Nfts
   useEffect(() => {
     if (key && data?.nfts && target === "nfts") {
