@@ -57,7 +57,7 @@ export default function Explorer() {
         );
         const data: Contract[] = resp.data;
 
-        console.log(data);
+        // console.log(data);
         setData(
           data.map(({ contractAddress, id, contractName }, index) => ({
             id: index.toString(),
