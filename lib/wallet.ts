@@ -18,13 +18,11 @@ export interface CombinedWallet {
 }
 
 export const isValidWalletAddress = (searchText: string) => {
-  const maxNetworkLength = 10; // Maximum length for the network prefix
-  const separator = "1";
+  const maxNetworkLength = 10 // Maximum length for the network prefix
+  const separator = '1'
 
   // The regex pattern expects exactly 38 characters after the separator
-  const walletAddressRegex = new RegExp(
-    `^[a-zA-Z0-9]{1,${maxNetworkLength}}${separator}.{38}$`
-  );
+  const walletAddressRegex = new RegExp(`^[a-zA-Z0-9]{1,${maxNetworkLength}}${separator}.{38}$`)
 
-  return walletAddressRegex.test(searchText);
-};
+  return walletAddressRegex.test(searchText)
+}
