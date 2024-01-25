@@ -3,7 +3,7 @@ import { PiBugFill } from "react-icons/pi";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import SearchBar from "./search-bar";
-import { LayoutDashboardIcon } from "lucide-react";
+
 
 function SiteHeader({
   isExplorerPage,
