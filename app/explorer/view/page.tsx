@@ -47,7 +47,7 @@ export default function View() {
   useEffect(() => {
     const paramKey = searchParams.get('key')
     if (paramKey?.startsWith('ibc')) {
-      setKey(`ibc%2F${paramKey.split('/')[1]}`)
+      setKey(paramKey.replace('ibc/', 'ibc%2F'))
     } else {
       setKey(paramKey)
     }
