@@ -1,4 +1,5 @@
 import { SearchProvider } from "@/context/SearchContext";
+import { Analytics } from "@vercel/analytics/react";
 import "@/styles/globals.css";
 // import { Inter } from 'next/font/google'
 
@@ -37,7 +38,9 @@ export default async function RootLayout({
       </Head> */}
       <SearchProvider>
         <body className={`bg-woodsmoke text-gray-300`}>
-          {children}</body>
+          {children}
+          <Analytics />
+        </body>
       </SearchProvider>
     </html>
   );
