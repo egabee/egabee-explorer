@@ -45,7 +45,7 @@ export default function Explorer() {
   const [key, setKey] = useState("contracts");
 
 
-  
+
 
   useEffect(() => {
     if (key === "contracts") {
@@ -117,7 +117,7 @@ export default function Explorer() {
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden" >
       <SiteHeader hideSearch={false} isExplorerPage={true} />
-      <div className="py-2 px-4 mt-10" onClick={()=>setSearchText('')}>
+      <div className="py-2 px-4 mt-10" onClick={() => setSearchText('')}>
         <div className="container">
           <div className="flex justify-between items-center mb-4 gap-2">
             {isExplorerPage && (
@@ -138,7 +138,7 @@ export default function Explorer() {
                 >
                   <SelectTrigger
                     className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 
-            rounded bg-transparent text-light-yellow  hover:text-black  border-light-yellow  hover:bg-light-yellow-20 duration-100"
+            rounded bg-transparent dark:text-light-yellow text-lightBrand  dark:hover:text-black hover:text-white  dark:border-light-yellow border-lightBrand  dark:hover:bg-light-yellow-20 hover:bg-lightBrand duration-100"
                   >
                     <SelectValue placeholder="Select Network" />
                   </SelectTrigger>
@@ -159,8 +159,8 @@ export default function Explorer() {
               <div className="flex justify-end">
                 <Select defaultValue={key} onValueChange={setKey}>
                   <SelectTrigger
-                    className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 text-black border-none
-                                rounded bg-light-yellow hover:bg-light-yellow-20 duration-100"
+                    className="flex items-center justify-center cursor-pointer h-10 text-sm font-semibold leading-6 dark:text-black text-white border-none
+                                rounded dark:bg-light-yellow bg-lightBrand dark:hover:bg-light-yellow-20 hover:bg-lightBrand duration-100"
                   >
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>
@@ -176,7 +176,7 @@ export default function Explorer() {
             </div>
           </div>
 
-          <DataTable columns={columns} data={Data} onRowClick={() => {}} />
+          <DataTable columns={columns} data={Data} onRowClick={() => { }} />
         </div>
       </div>
     </div>

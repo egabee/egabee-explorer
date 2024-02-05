@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import "@/styles/globals.css";
 // import { Inter } from 'next/font/google'
 
+
 // import Head from 'next/head'
 import { Metadata } from "next";
 
@@ -37,7 +38,7 @@ export default async function RootLayout({
         ))}
       </Head> */}
       <SearchProvider>
-        <body className={`bg-woodsmoke text-gray-300`}>
+        <body className={`dark:bg-woodsmoke bg-mainBg dark:text-gray-300 text-secText`}>
           {children}
           <Analytics />
         </body>

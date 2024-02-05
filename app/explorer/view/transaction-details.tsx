@@ -13,7 +13,7 @@ export default function TransactionDetails({ details }: Props) {
   return (
     <div className="flex flex-col py-4">
       <p className="font-semibold text-2xl">TX Details</p>
-      <div className="mt-4 px-2 sm:px-10 py-8 bg-shark-40 rounded-md border border-black border-opacity-10 font-semibold">
+      <div className="mt-4 px-2 sm:px-10 py-8 dark:bg-shark-40 bg-secBg shadow-md rounded-md border dark:border-black border-lightmodeborder border-opacity-10 font-semibold">
         <p className="font-bold text-lg mb-5">Transaction Info</p>
 
         <div className="grid grid-cols-4 gap-4 ">
@@ -22,7 +22,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Hash className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Hash className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -34,7 +34,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>TxHash</p>
           </div>
-          <div className="text-athens-gray  text-xs md:text-sm break-all flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText  text-xs md:text-sm break-all flex items-center justify-center sm:justify-start col-span-3">
             {details.id} <CopyFunction item={details.id} />
           </div>
 
@@ -43,7 +43,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <TrendingUp className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <TrendingUp className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">The status of the transaction.</p>
@@ -52,7 +52,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>Status</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
             <span
               className={cn({ 'text-green-500': details.success, 'text-mandy': !details.success, capitalize: true })}
             >
@@ -65,7 +65,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Link className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -76,7 +76,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>Chain ID</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start  col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start  col-span-3">
             {details.chainId}
           </div>
 
@@ -85,7 +85,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Clock2 className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Clock2 className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs"></p>
@@ -94,7 +94,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>When</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
             {formatTime(details.timestamp)}
           </div>
 
@@ -103,7 +103,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Box className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Box className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -116,7 +116,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>Blocks</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
             {details.blockNumber.toLocaleString()}
           </div>
 
@@ -125,7 +125,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Fuel className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Fuel className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -138,7 +138,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>Gas Used</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
             {details.gasUsed.toLocaleString()}
           </div>
 
@@ -147,7 +147,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Fuel className="inline text-supernova mr-2" size={16} strokeWidth={1.75} />
+                  <Fuel className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -159,7 +159,7 @@ export default function TransactionDetails({ details }: Props) {
             </TooltipProvider>
             <p>Gas Wanted</p>
           </div>
-          <div className="text-athens-gray text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
+          <div className="dark:text-athens-gray text-mainText text-xs md:text-sm flex items-center justify-center sm:justify-start col-span-3">
             {details.gasWanted.toLocaleString()}
           </div>
         </div>
