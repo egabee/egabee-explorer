@@ -50,7 +50,7 @@ function SiteHeader({
               <MoveUpRight size={18} className="ml-1" />
             </Link>
           )}
-          <Link href={"https://www.egabee.com/login"}>
+          {/* <Link href={"https://www.egabee.com/login"}>
             <div className="flex items-center  ">
               <Button
                 variant={"outline"}
@@ -59,7 +59,7 @@ function SiteHeader({
                 <p>Dashboard</p>
               </Button>
             </div>
-          </Link>
+          </Link> */}
         </nav>
       </div>
       {/*----------------------------------go to Explorer Btn Mobile view------------------------------ */}
@@ -93,7 +93,7 @@ function SiteHeader({
                 </Button>
               </div>
             </Link>
-            <Link href={"https://www.egabee.com/login"}>
+            {/* <Link href={"https://www.egabee.com/login"}>
               <div className="flex items-start px-6   ">
                 <Button
                   variant={"outline"}
@@ -102,7 +102,7 @@ function SiteHeader({
                   <p>Dashboard</p>
                 </Button>
               </div>
-            </Link>
+            </Link> */}
           </div>
         </SheetContent>
       </Sheet>
