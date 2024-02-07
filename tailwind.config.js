@@ -17,6 +17,14 @@ module.exports = {
     },
     extend: {
       colors: {
+        mainBg: '#E8EAED',
+        secBg: '#ffffff',
+        thirdBg: '#c2c3cc',
+        mainText: '#1b1e23',
+        secText: '#6d7074',
+        lightBrand: '#1E90FF',
+        darkBrand: '#1e58ff',
+        lightmodeborder: '#D6D6D6',
         'mandy': '#e35050',
         'dark-purple': '#081A51',
         'darker-purple': '#040f30',

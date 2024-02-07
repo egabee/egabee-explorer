@@ -6,7 +6,7 @@ export default async function ExplorerLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`bg-woodsmoke text-gray-300`}>
+    <div className={`dark:bg-woodsmoke bg-mainBg dark:text-gray-300 text-secText`}>
       {children}
     </div>
   );

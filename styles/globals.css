@@ -82,3 +82,42 @@
 .odd-row {
   background-color: transparent;
 }
+.dark .nav-item::before {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background: rgba(254, 203, 11, 1);
+  bottom: -7px;
+  left: 0;
+  display: block;
+  visibility: hidden;
+  box-shadow: 0px -10px 19px 1px rgba(254, 203, 11, 1);
+  transition: all 0.2s;
+}
+
+.dark .nav-item:hover.nav-item::before {
+  visibility: visible;
+  width: 100%;
+  left: 0;
+}
+
+.nav-item::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 3px;
+  background: #1e90ff;
+  bottom: -7px;
+  left: 0;
+  display: block;
+  visibility: hidden;
+  /* box-shadow: 0px -10px 19px 4px #1e90ff; */
+  transition: all 0.3s;
+}
+
+.nav-item:hover::before {
+  visibility: visible;
+  width: 100%;
+  left: 0;
+}

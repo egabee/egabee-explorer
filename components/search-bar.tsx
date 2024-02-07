@@ -14,10 +14,10 @@ import Spinner from "./ui/spinner";
 import { isValidWalletAddress } from "@/lib/wallet";
 import { isValidNftaddress } from "@/lib/nft";
 
-export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
+export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
   const router = useRouter();
 
-  const [key, setKey] = useState<string>(""); 
+  const [key, setKey] = useState<string>("");
 
   const { searchText, setSearchText } = useSearchContext();
 
@@ -46,8 +46,8 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
       router.push(`/explorer/view?target=${target}&key=${ID}`);
     }
 
-      setSearchText("");
-      setSearchResults([]);
+    setSearchText("");
+    setSearchResults([]);
   };
 
 
@@ -58,7 +58,7 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
         isValidTxHash(searchText) ||
         isValidWalletAddress(searchText) ||
         isValidContractAddress(searchText) ||
-        isValidTokenAddress(searchText) || 
+        isValidTokenAddress(searchText) ||
         isValidNftaddress(searchText)
       )
     };
@@ -113,19 +113,18 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
   return (
     <div
       className={clsx(`z-[9999] relative flex justify-center items-center py-1 px-2 md:w-3/4 w-4/5 mx-auto
-          border border-light-white rounded-sm gap-x-2  `)}
+          border dark:border-light-white border-lightmodeborder rounded-sm gap-x-2 bg-secBg dark:bg-woodsmoke  `)}
     >
       <div className="flex items-center">
-        <span className="text-[#9A999F] cursor-pointer hover:text-gray-100">
+        <span className="dark:text-[#9A999F] text-mainText cursor-pointer dark:hover:text-gray-100 hover:text-secText ">
           <Search size={20} />
         </span>
       </div>
 
       <input
         className={clsx(
-          `p-1 text-white w-full ${
-            mainSearch && "h-12"
-          } bg-[#19191A] border-none hover:ring-0 focus:outline-none focus:ring-0`
+          `p-1 dark:text-white text-mainText w-full ${mainSearch && "h-12"
+          } dark:bg-[#19191A] bg-secBg border-none hover:ring-0 focus:outline-none focus:ring-0 `
         )}
         type="text"
         placeholder="Search for any transaction or address"
@@ -133,30 +132,30 @@ export default function SearchBar({ mainSearch }: {mainSearch:boolean}) {
         onChange={changeHandler}
       />
       {searchText.length > 0 && !error && (
-        <div className="max-h-44 overflow-y-auto  yellow-scroll   absolute left-0 top-[105%] border border-light-white border-t-0  shadow-black shadow-md py-1 w-full bg-[#19191A]  rounded-b-sm">
+        <div className="max-h-44 overflow-y-auto  yellow-scroll   absolute left-0 top-[105%] border dark:border-light-white border-light-white border-t-0   shadow-black  dark:shadow-md shadow-sm py-1 w-full dark:bg-[#19191A] bg-secBg rounded-b-sm">
           {searchResults?.length > 0 ? (
             searchResults.map((item: any, i: number) => (
               <div
                 key={i}
                 onClick={() => navToItem(item.id)}
                 className={` px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full
-                      ${i % 2 ? "bg-[#19191A]" : "bg-shark-40"} cursor-pointer 
+                      ${i % 2 ? "dark:bg-[#19191A] bg-secBg" : "dark:bg-shark-40 bg-secBg"} cursor-pointer 
                       `}
               >
                 <p className="truncate">
                   {item.blockNumber
                     ? item.id
                     : item.name ||
-                      item.displayName ||
-                      item.contractName ||
-                      item.tokenAddress ||
-                      item.address ||
-                      item.contractAddress ||
-                      item.id}
+                    item.displayName ||
+                    item.contractName ||
+                    item.tokenAddress ||
+                    item.address ||
+                    item.contractAddress ||
+                    item.id}
                 </p>
               </div>
             ))
-          ) :(
+          ) : (
             <div className="flex items-center justify-center h-full">
               {isLoading ? (
                 <div className="py-2">

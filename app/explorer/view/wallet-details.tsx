@@ -14,10 +14,10 @@ export default function WalletDetailsPage({
 }: props) {
 
   return (
-    <div className="flex flex-col gap-y-6 py-2 text-athens-gray duration-300">
+    <div className="flex flex-col gap-y-6 py-2 dark:text-athens-gray text-mainText duration-300">
       <div className="grid md:grid-cols-1 grid-cols-1 gap-y-4 mt-5">
         <div className="flex flex-row gap-x-4">
-          <div className="border border-shark-tint-30 border-opacity-50 w-full text-xs md:text-sm lg:text-base rounded bg-shark-40">
+          <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
             <div className="flex flex-col gap-y-3 py-4 mx-6">
               <div className="flex justify-between">
                 <div className="font-semibold">Wallet Address:</div>
