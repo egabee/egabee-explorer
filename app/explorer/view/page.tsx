@@ -45,9 +45,14 @@ export default function View() {
 
   
   useEffect(() => {
-    setKey(searchParams.get("key"));
-    setTarget(searchParams.get("target"));
-  }, [searchParams]);
+    const paramKey = searchParams.get('key')
+    if (paramKey?.startsWith('ibc')) {
+      setKey(paramKey.replace('ibc/', 'ibc%2F'))
+    } else {
+      setKey(paramKey)
+    }
+    setTarget(searchParams.get('target'))
+  }, [searchParams])
 
   // Tokens
   useEffect(() => {

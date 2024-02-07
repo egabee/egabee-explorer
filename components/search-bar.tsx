@@ -64,7 +64,12 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
     };
 
     if (searchText && isValidKey(searchText)) {
-      setKey(searchText);
+      if (searchText.startsWith('ibc')) {
+        const modifiedKey = `ibc%2F${searchText.split('/')[1]}`
+        setKey(modifiedKey)
+      } else {
+        setKey(searchText)
+      }
     } else {
       console.log("wrong search input");
     }
