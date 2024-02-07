@@ -97,23 +97,20 @@ export type ContractInsight = Insight
 export const isValidTokenAddress = (searchText: string) => {
   // first variant
   if (isValidContractAddress(searchText)) {
-    return true;
+    return true
   }
 
   // second variant
-  const tokenAddressRegex = /^([^-\s]+)-(.+)$/; // Matches "prefix-walletAddressOrContractAddress"
-  const matchResult = searchText.match(tokenAddressRegex);
+  const tokenAddressRegex = /^([^-\s]+)-(.+)$/ // Matches "prefix-walletAddressOrContractAddress"
+  const matchResult = searchText.match(tokenAddressRegex)
 
   if (matchResult?.length === 3) {
-    const [, prefix, walletOrContractAddress] = matchResult;
-    return (
-      isValidWalletAddress(walletOrContractAddress) ||
-      isValidContractAddress(walletOrContractAddress)
-    );
+    const [, prefix, walletOrContractAddress] = matchResult
+    return isValidWalletAddress(walletOrContractAddress) || isValidContractAddress(walletOrContractAddress)
   }
 
-  return false;
-};
+  return false
+}
 
 export const mapToTokenDetails = ({
   token,
