@@ -1,14 +1,14 @@
 /* eslint-disable max-len */
-import React from "react";
+import React from 'react'
 
 interface SpinnerProps {
-  type: string;
+  type: string
 }
 
 export default function Spinner({ type }: SpinnerProps) {
   return (
     <div className="flex items-center justify-center">
-      {type === "main" ? (
+      {type === 'main' ? (
         <div className="flex items-center justify-center h-[80vh]">
           <div className="loader text-lightBrand dark:text-supernova"></div>
         </div>
@@ -31,5 +31,5 @@ export default function Spinner({ type }: SpinnerProps) {
         </svg>
       )}
     </div>
-  );
+  )
 }

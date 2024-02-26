@@ -12,6 +12,7 @@ import { useSearchContext } from '@/context/SearchContext'
 import SiteHeader from '@/components/siteHeader'
 import { createUrl } from '@/lib/fetcher'
 import { Nft } from '@/lib/nft'
+import Spinner from '@/components/ui/spinner'
 
 function getNetworkName(networkId: string) {
   return networkId === '527339fa-ca4b-4eb0-8b6a-a53a6e5fac25' ? 'Coreum(mainnet)' : 'Coreum(testnet)'
@@ -29,8 +30,10 @@ export default function Explorer() {
   const [networkId, setNetworkId] = useState<string>('527339fa-ca4b-4eb0-8b6a-a53a6e5fac25')
 
   const [key, setKey] = useState('contracts')
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    setIsLoading(true)
     if (key === 'contracts') {
       const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
 
@@ -47,6 +50,7 @@ export default function Explorer() {
             network: getNetworkName(networkId),
           }))
         )
+        setIsLoading(false)
       }
 
       getdata()
@@ -65,6 +69,7 @@ export default function Explorer() {
               network: getNetworkName(networkId),
             }))
         )
+        setIsLoading(false)
       }
       getdata()
     } else if (key === 'nfts') {
@@ -82,12 +87,17 @@ export default function Explorer() {
               network: getNetworkName(network_id),
             }))
         )
+        setIsLoading(false)
       }
       getdata()
     }
   }, [networkId, key])
 
   const { setSearchText } = useSearchContext()
+
+  if (isLoading && Data.length === 0) {
+    return <Spinner type={'main'} />
+  }
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
