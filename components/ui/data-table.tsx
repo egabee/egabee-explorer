@@ -1,6 +1,13 @@
 'use client'
 
-import { ColumnDef, flexRender, getCoreRowModel, useReactTable, getPaginationRowModel, Row } from '@tanstack/react-table'
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+  getPaginationRowModel,
+  Row,
+} from '@tanstack/react-table'
 
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { Button } from '@/components/ui/button'
@@ -50,7 +57,6 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
     }
   }
 
-
   return (
     <>
       <div className="mt-10  ">
@@ -72,7 +78,6 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
-
                   key={row.id}
                   onClick={(e) => {
                     e.stopPropagation()
@@ -80,31 +85,31 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                       onRowClick(row.original.id, row.index)
                     }
                   }}
-                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-shark odd:bg-[#d5d5de] dark:odd:bg-shark-tint-30 even:bg-transparent ${row.index % 2 === 0 ? 'even-row' : 'odd-row'}`}
-
+                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-shark odd:bg-[#d5d5de] dark:odd:bg-shark-tint-30 even:bg-transparent ${
+                    row.index % 2 === 0 ? 'even-row' : 'odd-row'
+                  }`}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}
-                      className={`text-secText dark:text-[#9A999E]  ${cell.id.includes('_txHash') || cell.id.includes('_address')
-                        ? 'break-all font-ubuntu-mono '
-                        : ''
-                        }  ${cell.id == '0_address' ? 'truncate ' : ''} `}>
+                    <TableCell
+                      key={cell.id}
+                      className={`text-secText dark:text-[#9A999E]  ${
+                        cell.id.includes('_txHash') || cell.id.includes('_address') ? 'break-all font-ubuntu-mono ' : ''
+                      }  ${cell.id == '0_address' ? 'truncate ' : ''} `}
+                    >
                       <span
                         onClick={() => handleCopy(copyFunctionItem)}
                         onMouseEnter={() => handleHover(cell.id, row)}
                         onMouseLeave={() => handleHover('', row)}
                       >
                         <span
-                          className={`${hoveredCellId === cell.id && 'underline text-darkBrand dark:text-supernova'
-                            }`}
+                          className={`${hoveredCellId === cell.id && 'underline text-darkBrand dark:text-supernova'}`}
                         >
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </span>{' '}
                         <span
-                          className={`${cell.id.includes('_txHash') || cell.id.includes('_address')
-                            ? 'inline-block'
-                            : 'hidden'
-                            }  ${hoveredCellId === cell.id ? 'opacity-100' : 'opacity-0'}`}
+                          className={`${
+                            cell.id.includes('_txHash') || cell.id.includes('_address') ? 'inline-block' : 'hidden'
+                          }  ${hoveredCellId === cell.id ? 'opacity-100' : 'opacity-0'}`}
                         >
                           <button className="text-darkBrand dark:text-supernova relative" onClick={handleCopy}>
                             {isCopied ? <Check size={16} /> : <Copy size={16} />}
@@ -124,9 +129,9 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 </TableRow>
               ))
             ) : (
-              <TableRow className='hover:bg-[#F2F4F7] dark:hover:bg-gray-700'>
+              <TableRow className="hover:bg-[#F2F4F7] dark:hover:bg-shark">
                 <TableCell colSpan={columns.length} className="h-24 text-center text-secText dark:text-[#9A999E]">
-                  No results.
+                  No data.
                 </TableCell>
               </TableRow>
             )}
@@ -138,7 +143,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
         <div className=" border-t py-3 dark:border-[#9A999E] border-lightmodeborder mt-5">
           <div className="flex  justify-between  items-center">
             <div className="flex justify-between  items-center gap-1 text-sm  dark:text-[#9A999E] text-secText ">
-              <p className="text-sm font-medium">Show</p>
+              <p className="text-sm font-medium">Show{''}</p>
 
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -151,7 +156,11 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 </SelectTrigger>
                 <SelectContent side="top" className="dark:bg-shark bg-secBg dark:text-white text-black">
                   {[5, 10, 20, 50].map((pageSize) => (
-                    <SelectItem key={pageSize} value={`${pageSize}`}>
+                    <SelectItem
+                      key={pageSize}
+                      value={`${pageSize}`}
+                      className="hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
+                    >
                       {pageSize}
                     </SelectItem>
                   ))}
@@ -164,7 +173,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 size="sm"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
-                className="text-sm bg-transparent font-semibold cursor-pointer text-darkBrand dark:text-[#9A999E]"
+                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-lightBrand dark:text-[#9A999E] hover:scale-[1.15]"
               >
                 <ChevronLeft />
               </Button>
@@ -172,7 +181,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 size="sm"
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
-                className="text-sm bg-transparent font-semibold cursor-pointer text-darkBrand dark:text-[#9A999E] hover:text-secBg dark:hover:text-mainBg hover:bg-darkBrand dark:hover:bg-gray-500 "
+                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-lightBrand dark:text-[#9A999E] hover:scale-[1.15]"
               >
                 <ChevronRight />
               </Button>
