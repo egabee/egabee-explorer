@@ -43,16 +43,15 @@ export default function View() {
 
   const { data, error, isLoading } = useSearch(key!);
 
-  
   useEffect(() => {
-    const paramKey = searchParams.get('key')
-    if (paramKey?.startsWith('ibc')) {
-      setKey(paramKey.replace('ibc/', 'ibc%2F'))
+    const paramKey = searchParams.get("key");
+    if (paramKey?.startsWith("ibc")) {
+      setKey(paramKey.replace("ibc/", "ibc%2F"));
     } else {
-      setKey(paramKey)
+      setKey(paramKey);
     }
-    setTarget(searchParams.get('target'))
-  }, [searchParams])
+    setTarget(searchParams.get("target"));
+  }, [searchParams]);
 
   // Tokens
   useEffect(() => {
@@ -132,7 +131,7 @@ export default function View() {
     if (key && data?.nfts && target === "nfts") {
       setNft(data.nfts[0]);
 
-      if (data.nfts[0] ) {
+      if (data.nfts[0]) {
         const getInsigths = async () => {
           try {
             const result = await fetchInsightData(data.nfts[0].nft.nft_id);
@@ -162,11 +161,7 @@ export default function View() {
 
   if (key && data?.tx && target === "transactions") {
     if (isLoading) {
-      return (
-        <div className="flex justify-center items-center mt-[50px]">
-          <Spinner />
-        </div>
-      );
+      return <Spinner type={"main"} />;
     } else {
       return (
         <div>
@@ -189,11 +184,7 @@ export default function View() {
   // -----------------------------------------------------------
   if (key && data?.tokens && token && target === "tokens") {
     if (isLoading) {
-      return (
-        <div className="flex justify-center items-center mt-[50px]">
-          <Spinner />
-        </div>
-      );
+      return <Spinner type={"main"} />;
     } else {
       return (
         <div>
@@ -220,11 +211,7 @@ export default function View() {
   // -----------------------------------------------------------
   if (key && data?.contracts && contract && target === "contracts") {
     if (isLoading) {
-      return (
-        <div className="flex justify-center items-center mt-[50px]">
-          <Spinner />
-        </div>
-      );
+      return <Spinner type={"main"} />;
     } else {
       return (
         <div>
@@ -247,11 +234,7 @@ export default function View() {
   // -----------------------------------------------------------
   if (key && data?.wallets && wallet && target === "wallets") {
     if (isLoading) {
-      return (
-        <div className="flex justify-center items-center mt-[50px]">
-          <Spinner />
-        </div>
-      );
+      return <Spinner type={"main"} />;
     } else {
       return (
         <div>
@@ -285,10 +268,7 @@ export default function View() {
           >
             <GoBack title={""} />
           </div>
-          <NftDetailsPage
-            insights={insights}
-            selectedRow={nft}
-          />
+          <NftDetailsPage insights={insights} selectedRow={nft} />
         </div>
       </div>
     );

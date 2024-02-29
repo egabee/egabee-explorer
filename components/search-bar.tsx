@@ -23,11 +23,9 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
   const [searchResults, setSearchResults] = useState<any[]>([]);
 
-
   const [target, setTarget] = useState<string>("");
 
   const { data, error, isLoading } = useSearch(key);
-
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKey("");
@@ -50,7 +48,6 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
     setSearchResults([]);
   };
 
-
   // handle search req (set api key search)
   useEffect(() => {
     const isValidKey = (searchText: string) => {
@@ -60,15 +57,15 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
         isValidContractAddress(searchText) ||
         isValidTokenAddress(searchText) ||
         isValidNftaddress(searchText)
-      )
+      );
     };
 
     if (searchText && isValidKey(searchText)) {
-      if (searchText.startsWith('ibc')) {
-        const modifiedKey = `ibc%2F${searchText.split('/')[1]}`
-        setKey(modifiedKey)
+      if (searchText.startsWith("ibc")) {
+        const modifiedKey = `ibc%2F${searchText.split("/")[1]}`;
+        setKey(modifiedKey);
       } else {
-        setKey(searchText)
+        setKey(searchText);
       }
     } else {
       console.log("wrong search input");
@@ -92,23 +89,27 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
   // set target in url
   useEffect(() => {
     if (searchResults[0]?.contractAddress) {
-      setTarget('contracts')
+      setTarget("contracts");
     }
     if (searchResults[0]?.tokenAddress) {
-      setTarget('tokens')
+      setTarget("tokens");
     }
-    if (searchResults[0] && Object.keys(searchResults[0]).length === 1 && 'id' in searchResults[0]) {
-      setTarget('wallets')
+    if (
+      searchResults[0] &&
+      Object.keys(searchResults[0]).length === 1 &&
+      "id" in searchResults[0]
+    ) {
+      setTarget("wallets");
     }
 
     if (isValidTxHash(searchText)) {
-      setTarget('transactions')
+      setTarget("transactions");
     }
 
     if (searchResults[0]?.nft_id) {
-      setTarget('nfts')
+      setTarget("nfts");
     }
-  }, [data, searchResults, searchText])
+  }, [data, searchResults, searchText]);
 
   return (
     <div
@@ -123,7 +124,8 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
       <input
         className={clsx(
-          `p-1 dark:text-white text-mainText w-full ${mainSearch && "h-12"
+          `p-1 dark:text-white text-mainText w-full ${
+            mainSearch && "h-12"
           } dark:bg-[#19191A] bg-secBg border-none hover:ring-0 focus:outline-none focus:ring-0 `
         )}
         type="text"
@@ -139,28 +141,30 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
                 key={i}
                 onClick={() => navToItem(item.id)}
                 className={` px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full
-                      ${i % 2 ? "dark:bg-[#19191A] bg-secBg" : "dark:bg-shark-40 bg-secBg"} cursor-pointer 
+                      ${
+                        i % 2
+                          ? "dark:bg-[#19191A] bg-secBg"
+                          : "dark:bg-shark-40 bg-secBg"
+                      } cursor-pointer 
                       `}
               >
                 <p className="truncate">
                   {item.blockNumber
                     ? item.id
                     : item.name ||
-                    item.displayName ||
-                    item.contractName ||
-                    item.tokenAddress ||
-                    item.address ||
-                    item.contractAddress ||
-                    item.id}
+                      item.displayName ||
+                      item.contractName ||
+                      item.tokenAddress ||
+                      item.address ||
+                      item.contractAddress ||
+                      item.id}
                 </p>
               </div>
             ))
           ) : (
             <div className="flex items-center justify-center h-full">
               {isLoading ? (
-                <div className="py-2">
-                  <Spinner />{" "}
-                </div>
+                <Spinner type={"secondary"} />
               ) : (
                 <div className="text-[#9A999F] text-sm py-2 flex justify-center items-center gap-2 mx-3">
                   Whoops! This address is wandering off the map. Try another!
