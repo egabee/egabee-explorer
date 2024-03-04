@@ -70,7 +70,7 @@ export default function TokenDetailsPage({
             <div className="flex justify-between">
               <div className="font-semibold gap-x-6">Globally Frozen:</div>
               <div className="font-light dark:text-mmist text-secText capitalize">
-                {tokenDetails?.globally_frozen ? "true" : "false"}
+                {tokenDetails?.globallyFrozen ? "true" : "false"}
               </div>
             </div>
             <div className="flex justify-between">
@@ -101,13 +101,13 @@ export default function TokenDetailsPage({
             <div className="flex justify-between">
               <div className="text-sm font-semibold">Burn Rate:</div>
               <div className="text-sm font-light dark:text-mmist text-secText">
-                {tokenDetails?.burn_rate}{" "}
+                {tokenDetails?.burnRate}{" "}
               </div>
             </div>
             <div className="flex justify-between">
               <div className="text-sm font-semibold">Send Commission Rate:</div>
               <div className="text-sm font-light text-mmist">
-                {tokenDetails?.send_commission_rate}
+                {tokenDetails?.sendCommissionRate}
               </div>
             </div>
             <div className="border-t border-t-shark-tint-30 border-opacity-50"></div>

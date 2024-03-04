@@ -19,7 +19,7 @@ export default function NftDetailsPage({
         <div className="flex flex-col gap-y-3 py-2 lg:py-0 lg:mt-4 mx-6">
           <div className="flex flex-row justify-between items-end gap-2">
             <div className="min-w-fit font-semibold">Nft address: </div>
-            <div className="truncate w-fit font-light text-sm"> {selectedRow?.class_id}</div>
+            <div className="truncate w-fit font-light text-sm"> {selectedRow?.classId}</div>
           </div>
           <div className="flex flex-row justify-between items-end gap-2">
             <div className="min-w-fit font-semibold">Nft description: </div>

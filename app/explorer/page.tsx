@@ -80,11 +80,11 @@ export default function Explorer() {
         setData(
           data
             .filter((item) => item.symbol !== 'ucore')
-            .map(({ id, name, network_id, nft_id }, index) => ({
+            .map(({ id, name, networkId, nftId }, index) => ({
               id: index.toString(),
               name: name,
-              address: nft_id,
-              network: getNetworkName(network_id),
+              address: nftId,
+              network: getNetworkName(networkId),
             }))
         )
         setIsLoading(false)

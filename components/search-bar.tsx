@@ -106,7 +106,7 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
       setTarget("transactions");
     }
 
-    if (searchResults[0]?.nft_id) {
+    if (searchResults[0]?.nftId) {
       setTarget("nfts");
     }
   }, [data, searchResults, searchText]);
