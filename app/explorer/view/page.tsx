@@ -134,7 +134,7 @@ export default function View() {
       if (data.nfts[0]) {
         const getInsigths = async () => {
           try {
-            const result = await fetchInsightData(data.nfts[0].nft.nft_id);
+            const result = await fetchInsightData(data.nfts[0].nft.nftId);
             if (result) {
               setInsights(result);
             }

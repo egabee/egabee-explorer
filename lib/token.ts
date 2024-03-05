@@ -57,15 +57,15 @@ export interface CombinedToken {
 
 export interface TokenDetails {
   id: string;
-  token_id: string;
-  burn_rate: string;
+  tokenId: string;
+  burnRate: string;
   denom: string;
   description: string;
   features: string;
-  globally_frozen: boolean;
+  globallyFrozen: boolean;
   issuer: string;
   precision: number;
-  send_commission_rate: string;
+  sendCommissionRate: string;
   subunit: string;
   symbol: string;
   version: string;
@@ -118,16 +118,16 @@ export const mapToTokenDetails = ({
 }: CombinedToken): TokenDetails => {
   return {
     id: token.id,
-    token_id: userToken.tokenId,
+    tokenId: userToken.tokenId,
     denom: token.tokenAddress,
     description: token.description || "",
     symbol: token.symbol,
-    burn_rate: token.metadata?.burnRate || "",
+    burnRate: token.metadata?.burnRate || "",
     features: token.metadata?.features.join(",") || "",
-    globally_frozen: false,
+    globallyFrozen: false,
     issuer: token.metadata?.issuer || "",
     precision: token.metadata?.precision || 0,
-    send_commission_rate: token.metadata?.sendCommissionRate || "",
+    sendCommissionRate: token.metadata?.sendCommissionRate || "",
     subunit: token.metadata?.subunit || "",
     version: "0.0.1" || "",
     metadata: token.metadata || null,
