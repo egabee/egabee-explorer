@@ -13,6 +13,9 @@ import SiteHeader from '@/components/siteHeader'
 import { createUrl } from '@/lib/fetcher'
 import { Nft } from '@/lib/nft'
 import Spinner from '@/components/ui/spinner'
+import { Network } from '@/lib/network'
+import { useNetworksContext } from '@/context/NetworksContext'
+import { Relayer } from '@/lib/relayer'
 
 function getNetworkName(networkId: string) {
   return networkId === '527339fa-ca4b-4eb0-8b6a-a53a6e5fac25' ? 'Coreum(mainnet)' : 'Coreum(testnet)'
@@ -20,11 +23,9 @@ function getNetworkName(networkId: string) {
 
 export default function Explorer() {
   const pathname = usePathname()
-  const isExplorerPage = pathname === '/explorer'
-
   const router = useRouter()
 
-  const [Data, setData] = useState<{ id: string; name: string; address: string; network: string }[]>([])
+  const isExplorerPage = pathname === '/explorer'
 
   // Default is mainnet
   const [networkId, setNetworkId] = useState<string>('527339fa-ca4b-4eb0-8b6a-a53a6e5fac25')
@@ -32,6 +33,21 @@ export default function Explorer() {
   const [key, setKey] = useState('contracts')
   const [isLoading, setIsLoading] = useState(true)
 
+  const [Data, setData] = useState<{ id: string; name: string; address: string; network: string }[]>([])
+
+  const [networks, setNetworks] = useState<Network[]>([])
+  const { networksData, isLoading: chainsIsLoading, error: networksError } = useNetworksContext()
+
+  //get supported networks
+  useEffect(() => {
+    if (!networksError && networksData) {
+      setNetworks(networksData)
+    }
+  }, [networksData, networksError])
+
+  console.log('networksData', networksData)
+
+  // get data
   useEffect(() => {
     setIsLoading(true)
     if (key === 'contracts') {
@@ -90,12 +106,28 @@ export default function Explorer() {
         setIsLoading(false)
       }
       getdata()
+    } else if (key === 'relayers') {
+      const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
+
+      const getdata = async () => {
+        const data: Relayer[] = await (await axios.get(createUrl(endpoint))).data
+        setData(
+          data.map(({ id, name, networkId, clientId }, index) => ({
+            id: index.toString(),
+            name: name,
+            address: clientId,
+            network: getNetworkName(networkId),
+          }))
+        )
+        setIsLoading(false)
+      }
+      getdata()
     }
   }, [networkId, key])
 
   const { setSearchText } = useSearchContext()
 
-  if (isLoading && Data.length === 0) {
+  if ((isLoading && Data.length === 0) || chainsIsLoading) {
     return <Spinner type={'main'} />
   }
 
@@ -115,32 +147,34 @@ export default function Explorer() {
                 <GoBack title={''} />
               </div>
             )}
+
             <div className="flex flex-row items-center gap-2">
+              {/* ---------------------------------- NETWORK SELECTOR ---------------------------------- */}
               <div className="flex justify-end">
                 <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
                   <SelectTrigger
                     className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-base font-semibold leading-6 
-            rounded bg-transparent dark:text-light-yellow text-lightBrand dark:hover:text-light-yellow hover:text-white dark:border-light-yellow border-lightBrand dark:hover:bg-light-yellow-20 dark:hover:bg-opacity-20 hover:bg-lightBrand duration-100"
+                    rounded bg-transparent dark:text-light-yellow text-lightBrand dark:hover:text-light-yellow hover:text-white dark:border-light-yellow border-lightBrand dark:hover:bg-light-yellow-20 dark:hover:bg-opacity-20 hover:bg-lightBrand duration-100"
                   >
                     <SelectValue placeholder="Select Network" />
                   </SelectTrigger>
                   <SelectContent className="shadow-lg">
-                    <SelectItem
-                      value="527339fa-ca4b-4eb0-8b6a-a53a6e5fac25"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
-                      Coreum Mainnet
-                    </SelectItem>
-                    <SelectItem
-                      value="27a28106-27ae-4bec-a956-f38bed27d84a"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
-                      Coreum Testnet
-                    </SelectItem>
+                    {Array.isArray(networks) &&
+                      networks?.map((network, i) => {
+                        return (
+                          <SelectItem
+                            key={i}
+                            value={network.id}
+                            className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
+                          >
+                            {network.name} {network.env}
+                          </SelectItem>
+                        )
+                      })}
                   </SelectContent>
                 </Select>
               </div>
-
+              {/* ---------------------------------- ITEMS SELECTOR ---------------------------------- */}
               <div className="flex justify-end">
                 <Select defaultValue={key} onValueChange={setKey}>
                   <SelectTrigger
@@ -167,6 +201,12 @@ export default function Explorer() {
                       className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
                     >
                       NFTs
+                    </SelectItem>
+                    <SelectItem
+                      value="relayers"
+                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
+                    >
+                      Relayers
                     </SelectItem>
                   </SelectContent>
                 </Select>
