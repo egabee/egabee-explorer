@@ -20,7 +20,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
       {!hideSearch && (
         <div className="px-2 md:w-3/4 w-4/5 mx-auto">
-          <SearchBar mainSearch={false} />
+          <SearchBar mainSearch={false} /> 
         </div>
       )}
 
