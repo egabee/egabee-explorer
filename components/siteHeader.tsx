@@ -14,7 +14,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center space-x-2 dark:text-light-yellow  text-lightBrand">
-          <Image src={`/navlogodark.png`} alt="logo" width={119} height={28} />
+          <Image src={`/logo.svg`} alt="logo" width={119} height={28} />
         </Link>
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
