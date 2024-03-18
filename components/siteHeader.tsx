@@ -14,13 +14,13 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center space-x-2 dark:text-light-yellow  text-lightBrand">
-          <Image src={`/logo.svg`} alt="logo" width={119} height={28} />
+          <Image src={`/logo.svg`} alt="logo" width={140} height={40} />
         </Link>
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
       {!hideSearch && (
         <div className="px-2 md:w-3/4 w-4/5 mx-auto">
-          <SearchBar mainSearch={false} /> 
+          <SearchBar mainSearch={false} />
         </div>
       )}
 
