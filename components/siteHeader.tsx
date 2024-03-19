@@ -13,8 +13,13 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
     <div className="flex flex-row items-center w-full dark:bg-[#19191A] bg-secBg text-mainText dark:text-white py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
-        <Link href="/" className="flex items-center space-x-2 dark:text-light-yellow  text-lightBrand">
-          <Image src={`/logo.svg`} alt="logo" width={140} height={40} />
+      <Link href="/dashboard/project" className="flex items-center">
+          <span className="dark:inline-block hidden">
+            <Image src={`/logo.svg`} alt="logo" width={140} height={40} />
+          </span>
+          <span className="dark:hidden inline-block">
+          <Image src={`/logoLight.svg`} alt="logo" width={140} height={40} />
+          </span>
         </Link>
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
