@@ -21,7 +21,7 @@ interface MyMetadata extends Metadata {
 export const metadata: MyMetadata = {
   title: 'Egabee - Explorer',
   description: 'Track your blockchains, smart contracts and tokens',
-  icons: [{ rel: 'icon', url: '/egabee.png' }],
+  icons: [{ rel: 'icon', url: '/favIcon.png' }],
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

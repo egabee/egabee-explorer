@@ -130,7 +130,7 @@ export default function Explorer() {
   if ((isLoading && Data.length === 0) || chainsIsLoading) {
     return <Spinner type={'main'} />
   }
-
+console.log(networks)
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
       <SiteHeader hideSearch={false} isExplorerPage={true} />
