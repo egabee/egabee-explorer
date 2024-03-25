@@ -92,7 +92,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      className={`text-secText dark:text-[#9A999E]  ${
+                      className={`dark:text-textGray text-gray-500 ${
                         cell.id.includes('_txHash') || cell.id.includes('_address') ? 'break-all font-ubuntu-mono ' : ''
                       }  ${cell.id == '0_address' ? 'truncate ' : ''} `}
                     >
@@ -101,9 +101,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                         onMouseEnter={() => handleHover(cell.id, row)}
                         onMouseLeave={() => handleHover('', row)}
                       >
-                        <span
-                          className={`${hoveredCellId === cell.id && 'underline text-darkBrand dark:text-supernova'}`}
-                        >
+                        <span className={`${hoveredCellId === cell.id && 'underline text-brand-30 dark:text-brand'}`}>
                           {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </span>{' '}
                         <span
@@ -111,10 +109,10 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                             cell.id.includes('_txHash') || cell.id.includes('_address') ? 'inline-block' : 'hidden'
                           }  ${hoveredCellId === cell.id ? 'opacity-100' : 'opacity-0'}`}
                         >
-                          <button className="text-darkBrand dark:text-supernova relative" onClick={handleCopy}>
+                          <button className="text-brand-30 dark:text-brand relative" onClick={handleCopy}>
                             {isCopied ? <Check size={16} /> : <Copy size={16} />}
                             {isCopied ? (
-                              <div className="z-[999] w-[55px] absolute top-3 left-[20px] transform  -translate-y-full bg-lightBrand text-secBg dark:bg-white dark:text-gray-800 p-1 text-center rounded text-xs">
+                              <div className="z-[999] w-[55px] absolute top-3 left-[20px] transform  -translate-y-full bg-brand-30 text-ourWhite dark:bg-white dark:text-gray-800 p-1 text-center rounded text-xs">
                                 Copied!
                               </div>
                             ) : null}
@@ -143,7 +141,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
         <div className=" border-t py-3 dark:border-[#9A999E] border-lightmodeborder mt-5">
           <div className="flex  justify-between  items-center">
             <div className="flex justify-between  items-center gap-1 text-sm  dark:text-[#9A999E] text-secText ">
-              <p className="text-sm font-medium">Show{''}</p>
+              <p className="text-sm font-medium text-brand-30 dark:text-textGray">Show{''}</p>
 
               <Select
                 value={`${table.getState().pagination.pageSize}`}
@@ -151,7 +149,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                   table.setPageSize(Number(value))
                 }}
               >
-                <SelectTrigger className="h-8 w-[60px] bg-transparent border dark:border-[#9A999E] border-lightmodeborder dark:hover:bg-supernova hover:bg-lightBrand dark:hover:text-black hover:text-white ">
+                <SelectTrigger className="h-8 w-[60px] bg-transparent text-brand-30 dark:text-textGray border dark:border-[#9A999E] border-brand-30 border-opacity-25 dark:border-opacity-25 dark:hover:bg-brand hover:bg-brand-30 dark:hover:text-black hover:text-white ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
                 <SelectContent side="top" className="dark:bg-shark bg-secBg dark:text-white text-black">
@@ -159,21 +157,21 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                     <SelectItem
                       key={pageSize}
                       value={`${pageSize}`}
-                      className="hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
+                      className="hover:!bg-brand-30 hover:!text-white dark:hover:!bg-brand dark:hover:!text-black"
                     >
                       {pageSize}
                     </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
-              <p className="text-sm font-medium"> per page</p>
+              <p className="text-sm font-medium text-brand-30 dark:text-textGray"> per page</p>
             </div>
             <div className="flex gap-1 ">
               <Button
                 size="sm"
                 onClick={() => table.previousPage()}
                 disabled={!table.getCanPreviousPage()}
-                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-lightBrand dark:text-[#9A999E] hover:scale-[1.15]"
+                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-brand-30 dark:text-[#9A999E] hover:scale-[1.15]"
               >
                 <ChevronLeft />
               </Button>
@@ -181,7 +179,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 size="sm"
                 onClick={() => table.nextPage()}
                 disabled={!table.getCanNextPage()}
-                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-lightBrand dark:text-[#9A999E] hover:scale-[1.15]"
+                className="text-sm !bg-transparent dark:bg-transparent font-semibold cursor-pointer text-brand-30 dark:text-[#9A999E] hover:scale-[1.15]"
               >
                 <ChevronRight />
               </Button>

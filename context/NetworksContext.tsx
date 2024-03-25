@@ -4,7 +4,6 @@ import { createContext, useContext, useEffect } from 'react'
 import { useChains } from '@/hooks/useChains'
 import { CombinedNetwork, Network } from '@/lib/network'
 
-
 interface NetworksContextProps {
   children: React.ReactNode
 }
@@ -22,9 +21,8 @@ const NetworksContext = createContext<NetworksContextValue>({
 })
 
 export const NetworksProvider: React.FC<NetworksContextProps> = ({ children }) => {
-
   const { data: chainsData, error: chainsError, isLoading: chainsIsLoading } = useChains()
-  console.log('chainsData',chainsData)
+  // console.log('chainsData',chainsData)
 
   const networksData: Network[] | undefined =
     chainsData && chainsData.length === 2 ? [chainsData[0], chainsData[1]] : undefined

@@ -39,7 +39,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Hash className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Hash className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -60,11 +60,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <TrendingUp
-                    className="inline dark:text-supernova text-lightBrand mr-2"
-                    size={16}
-                    strokeWidth={1.75}
-                  />
+                  <TrendingUp className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">The status of the transaction.</p>
@@ -99,7 +95,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Link className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Link className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -119,7 +115,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Clock2 className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Clock2 className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs"></p>
@@ -137,7 +133,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Box className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Box className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -159,7 +155,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Fuel className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Fuel className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">
@@ -181,7 +177,7 @@ export default function TransactionDetails({ details }: Props) {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger>
-                  <Fuel className="inline dark:text-supernova text-lightBrand mr-2" size={16} strokeWidth={1.75} />
+                  <Fuel className="inline text-brand mr-2" size={16} strokeWidth={1.75} />
                 </TooltipTrigger>
                 <TooltipContent>
                   <p className="text-xs">

@@ -45,7 +45,7 @@ export default function Explorer() {
     }
   }, [networksData, networksError])
 
-  console.log('networksData', networksData)
+  // console.log('networksData', networksData)
 
   // get data
   useEffect(() => {
@@ -130,7 +130,7 @@ export default function Explorer() {
   if ((isLoading && Data.length === 0) || chainsIsLoading) {
     return <Spinner type={'main'} />
   }
-console.log(networks)
+  // console.log(networks)
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden">
       <SiteHeader hideSearch={false} isExplorerPage={true} />
@@ -154,7 +154,7 @@ console.log(networks)
                 <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
                   <SelectTrigger
                     className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-base font-semibold leading-6 
-                    rounded bg-transparent dark:text-light-yellow text-lightBrand dark:hover:text-light-yellow hover:text-white dark:border-light-yellow border-lightBrand dark:hover:bg-light-yellow-20 dark:hover:bg-opacity-20 hover:bg-lightBrand duration-100"
+                    rounded bg-transparent text-brand-30 hover:text-brand-30 border-brand-30 border hover:bg-brand-30 hover:bg-opacity-20 duration-100"
                   >
                     <SelectValue placeholder="Select Network" />
                   </SelectTrigger>
@@ -165,7 +165,7 @@ console.log(networks)
                           <SelectItem
                             key={i}
                             value={network.id}
-                            className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
+                            className="cursor-pointer hover:!bg-brand-30 hover:!text-white"
                           >
                             {network.name} {network.env}
                           </SelectItem>
@@ -179,33 +179,21 @@ console.log(networks)
                 <Select defaultValue={key} onValueChange={setKey}>
                   <SelectTrigger
                     className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-base font-semibold leading-6 dark:text-black text-white border-none
-                                rounded dark:bg-light-yellow bg-lightBrand dark:hover:bg-light-yellow-20 hover:bg-lightBrand duration-100"
+                                rounded bg-brand-30 hover:bg-brand-30 duration-100"
                   >
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>
                   <SelectContent className="shadow-lg">
-                    <SelectItem
-                      value="contracts"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
+                    <SelectItem value="contracts" className="cursor-pointer hover:!bg-brand-30 hover:!text-white">
                       Contracts
                     </SelectItem>
-                    <SelectItem
-                      value="tokens"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
+                    <SelectItem value="tokens" className="cursor-pointer hover:!bg-brand-30 hover:!text-white">
                       Tokens
                     </SelectItem>
-                    <SelectItem
-                      value="nfts"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
+                    <SelectItem value="nfts" className="cursor-pointer hover:!bg-brand-30 hover:!text-white">
                       NFTs
                     </SelectItem>
-                    <SelectItem
-                      value="relayers"
-                      className="cursor-pointer hover:!bg-lightBrand hover:!text-white dark:hover:!bg-supernova dark:hover:!text-black"
-                    >
+                    <SelectItem value="relayers" className="cursor-pointer hover:!bg-brand-30 hover:!text-white">
                       Relayers
                     </SelectItem>
                   </SelectContent>

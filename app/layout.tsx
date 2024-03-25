@@ -35,7 +35,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </Head> */}
       <NetworksProvider>
         <SearchProvider>
-          <body className={`dark:bg-woodsmoke bg-mainBg dark:text-gray-300 text-secText`}>
+          <body className={`dark:bg-woodsmoke bg-mainBg dark:text-textGray text-secText`}>
             {children}
             <Analytics />
           </body>

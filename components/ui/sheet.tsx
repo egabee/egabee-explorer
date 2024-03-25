@@ -52,7 +52,7 @@ const sheetVariants = cva(
 
 interface SheetContentProps
   extends React.ComponentPropsWithoutRef<typeof SheetPrimitive.Content>,
-  VariantProps<typeof sheetVariants> { }
+    VariantProps<typeof sheetVariants> {}
 
 const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Content>, SheetContentProps>(
   ({ side = 'right', className, children, ...props }, ref) => (
@@ -67,7 +67,7 @@ const SheetContent = React.forwardRef<React.ElementRef<typeof SheetPrimitive.Con
       disabled:pointer-events-none 
       data-[state=open]:bg-secondary hover:scale-[1.15] active:scale-105"
         >
-          <Cross2Icon className="h-6 w-6 text-lightBrand dark:text-supernova m-3" />
+          <Cross2Icon className="h-6 w-6 text-brand m-3" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
