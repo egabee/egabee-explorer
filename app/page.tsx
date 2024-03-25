@@ -12,7 +12,7 @@ export default function Home() {
         <div className="mt-40 flex justify-center flex-col min-w-[60%]">
           <div className="flex justify-center mb-8 sm:w-xs md:w-sm lg:w-md">
             <Image
-              src={'/component 6.svg'}
+              src={'/logo.svg'}
               width={250}
               height={250}
               alt={'explorer-logo-searchbar'}
