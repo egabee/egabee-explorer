@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; hideSearch: boolean }) {
   return (
-    <div className="flex flex-row items-center w-full dark:bg-[#19191A] bg-secBg text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
+    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center">
@@ -29,9 +29,9 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       )}
 
       {/* ----------------------------------Theme-Toggle-------------------------------- */}
-      <div className={`flex items-center justify-end ${isExplorerPage ? '' : 'w-full mr-12 md:mr-0'}`}>
+      {/* <div className={`flex items-center justify-end ${isExplorerPage ? '' : 'w-full mr-12 md:mr-0'}`}>
         <ThemeToggle />
-      </div>
+      </div> */}
 
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
       {!isExplorerPage && (
