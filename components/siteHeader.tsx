@@ -1,5 +1,4 @@
 import React from 'react'
-import { PiBugFill } from 'react-icons/pi'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import SearchBar from './search-bar'
@@ -10,7 +9,7 @@ import Image from 'next/image'
 
 function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; hideSearch: boolean }) {
   return (
-    <div className="flex flex-row items-center w-full dark:bg-[#19191A] bg-secBg text-mainText dark:text-white py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
+    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center">
@@ -30,9 +29,9 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       )}
 
       {/* ----------------------------------Theme-Toggle-------------------------------- */}
-      <div className={`flex items-center justify-end ${isExplorerPage ? '' : 'w-full mr-12 md:mr-0'}`}>
+      {/* <div className={`flex items-center justify-end ${isExplorerPage ? '' : 'w-full mr-12 md:mr-0'}`}>
         <ThemeToggle />
-      </div>
+      </div> */}
 
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
       {!isExplorerPage && (
@@ -40,7 +39,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
           <nav className="flex items-center space-x-2">
             <Link
               href={'/explorer'}
-              className="nav-item relative flex items-center mx-3 text-lg font-normal sm:text-base text-secText dark:text-gray-300 dark:hover:text-white"
+              className="nav-item relative flex items-center mx-3 text-lg font-normal sm:text-base text-secText dark:text-textGray dark:hover:text-white"
             >
               Explorer
             </Link>
@@ -49,7 +48,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
             <div className="flex items-center  ">
               <Button
                 variant={"outline"}
-                className="flex gap-x-1 bg-transparent dark:text-supernova text-lightBrand rounded dark:hover:bg-supernova hover:bg-lightBrand hover:bg-opacity-100 dark:hover:text-shark-40 hover:text-secBg border dark:border-light-yellow border-lightBrand"
+                className="flex gap-x-1 bg-transparent text-brand rounded dark:hover:bg-brand hover:bg-brand-30 hover:bg-opacity-100 dark:hover:text-shark-40 hover:text-secBg border dark:border-brand-30 border-brand-30"
               >
                 <p>Dashboard</p>
               </Button>
@@ -64,7 +63,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
           <div className="absolute right-0 top-2 flex items-center mx-2 md:hidden border-0">
             <SheetTrigger
               className="relative inline-flex items-center md:hidden
-                  justify-center hover:scale-[1.15] p-3 active:scale-105 dark:text-supernova text-lightBrand"
+                  justify-center hover:scale-[1.15] p-3 active:scale-105 text-brand"
             >
               <span className="absolute -inset-0.5" />
               <span className="sr-only">Open main menu</span>
@@ -79,7 +78,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
                 <div className="flex items-start px-6">
                   <Button
                     variant={'outline'}
-                    className=" flex gap-x-2 bg-transparent w-full py-5 dark:text-supernova  text-lightBrand rounded-md dark:hover:bg-supernova dark:border-supernova hover:bg-lightBrand hover:text-white border border-lightBrand dark:hover:text-woodsmoke"
+                    className=" flex gap-x-2 bg-transparent w-full py-5 text-brand rounded-md dark:hover:bg-brand dark:border-brand hover:bg-brand-30 hover:text-white border border-brand-30 dark:hover:text-woodsmoke"
                   >
                     <p>Explorer</p>
                   </Button>
@@ -89,7 +88,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
               <div className="flex items-start px-6   ">
                 <Button
                   variant={"outline"}
-                  className="flex gap-x-2 bg-transparent w-full dark:text-supernova text-lightBrand rounded dark:hover:bg-supernova hover:bg-lightBrand hover:bg-opacity-100 dark:hover:text-shark-40 hover:text-secBg border dark:border-light-yellow border-lightBrand"
+                  className="flex gap-x-2 bg-transparent w-full text-brand rounded hover:bg-brand hover:bg-opacity-100 hover:text-shark-40 border border-brand-30"
                 >
                   <p>Dashboard</p>
                 </Button>

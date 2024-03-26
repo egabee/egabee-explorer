@@ -39,7 +39,7 @@ export default function ThemeToggle() {
   return (
     <div>
       <button
-        className="bg-transparent  dark:text-light-yellow-20 text-lightBrand w-[3rem] h-[3rem] rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all"
+        className="bg-transparent text-brand-30 w-[3rem] h-[3rem] rounded-full flex items-center justify-center hover:scale-[1.15] active:scale-105 transition-all"
         onClick={toggleTheme}
       >
         {theme === 'light' ? <Sun /> : <Moon />}

@@ -4,9 +4,9 @@ import { Copy, Check } from 'lucide-react'
 function CopyFunction({ item }: any) {
   const [isCopied, setIsCopied] = React.useState<boolean>(false)
   return (
-    <div className='relative'>
+    <div className="relative">
       <button
-        className="text-lightBrand dark:text-supernova"
+        className="text-brand"
         onClick={() => {
           setIsCopied(true)
           navigator.clipboard.writeText(item)
@@ -18,7 +18,7 @@ function CopyFunction({ item }: any) {
         {isCopied ? <Check size={16} /> : <Copy size={16} />}
       </button>
       {isCopied && (
-        <div className="w-[55px] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full dark:bg-white bg-black dark:text-gray-800 text-white p-1 text-center rounded text-xs">
+        <div className="w-[55px] absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full dark:bg-ourWhite bg-black dark:text-gray-800 text-white p-1 text-center rounded text-xs">
           Copied!
         </div>
       )}

@@ -7,7 +7,7 @@ export function useChains() {
   const { data, isLoading, error } = useSWR(urls, fetcher)
 
   const combinedError = data && data.length && data[0].error ? `${error} ${data[0].error}` : error
-  console.log('data', data)
+  // console.log('data', data)
 
   return { data, isLoading, error: combinedError }
 }

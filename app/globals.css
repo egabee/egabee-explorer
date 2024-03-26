@@ -17,10 +17,10 @@
     @apply flex flex-col justify-center items-center gap-y-2 cursor-pointer w-40 border border-shark-tint-30 border-opacity-50 rounded hover:bg-mandy hover:text-white bg-shark-40 py-5 hover:duration-300 text-sm;
   }
   .control-button-edit {
-    @apply flex flex-col justify-center items-center gap-y-2 cursor-pointer w-40 border border-shark-tint-30 border-opacity-50 rounded hover:bg-supernova hover:text-black bg-shark-40 py-5 hover:duration-300 text-sm;
+    @apply flex flex-col justify-center items-center gap-y-2 cursor-pointer w-40 border border-shark-tint-30 border-opacity-50 rounded hover:bg-brand hover:text-black bg-shark-40 py-5 hover:duration-300 text-sm;
   }
   .yellow-scroll {
-    @apply overflow-scroll scrollbar-thin   scrollbar-thumb-supernova scrollbar-track-mmist;
+    @apply overflow-scroll scrollbar-thin scrollbar-thumb-brand scrollbar-track-mmist;
   }
 }
 
@@ -115,7 +115,7 @@ input:-webkit-autofill:focus {
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
   }
 }
 

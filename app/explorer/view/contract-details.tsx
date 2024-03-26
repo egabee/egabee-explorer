@@ -6,11 +6,7 @@ interface props {
   selectedRow: any
 }
 
-export default function ContractDetailsPage({
-  insights,
-  selectedRow,
-}: props) {
-
+export default function ContractDetailsPage({ insights, selectedRow }: props) {
   return (
     <div className="flex flex-col mt-4 gap-y-6 py-2 dark:text-athens-gray text-mainText duration-300">
       <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 py-2 w-full h-fit lg:h-60 text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
@@ -58,7 +54,7 @@ export default function ContractDetailsPage({
           <div className="flex justify-between">
             <div className="font-semibold">Block Explorer:</div>
             <div className="font-light">
-              <a className=" underline dark:text-supernova text-lightBrand" href="https://explorer.coreum.com/coreum" target="_blank">
+              <a className="underline text-brand" href="https://explorer.coreum.com/coreum" target="_blank">
                 View Explorer
               </a>
             </div>

@@ -10,15 +10,15 @@ export default function Spinner({ type }: SpinnerProps) {
     <div className="flex items-center justify-center">
       {type === 'main' ? (
         <div className="flex items-center justify-center h-[80vh]">
-          {/* <div className="loader text-lightBrand dark:text-supernova"></div> */}
+          {/* <div className="loader text-brand"></div> */}
           <div className="w-20 h-20">
-            <div className="animate-spin custom-spinner-duration rounded-full h-20 w-20 border-t-[3px] border-darkBrand dark:border-supernova" />
+            <div className="animate-spin custom-spinner-duration rounded-full h-20 w-20 border-t-[3px] border-brand" />
           </div>
         </div>
       ) : (
         <svg
           aria-hidden="true"
-          className="inline w-6 h-6 mr-2 text-white animate-spin dark:text-white fill-gray-600"
+          className="inline w-6 h-6 mr-2 text-ourWhite animate-spin fill-gray-600"
           viewBox="0 0 100 101"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
