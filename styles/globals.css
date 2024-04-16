@@ -179,8 +179,7 @@
 
 .topBar {
   background: #1b1e23;
-  border-bottom: 1px solid rgba(55, 61, 72, 1);
-  box-shadow: 0px 6px 26.799999237060547px 17px rgba(58, 64, 75, 0.25);
+  box-shadow: 0px 4px 9px 0px #b3cff64d;
 }
 
 .searchBar {
@@ -188,11 +187,29 @@
   box-shadow: 0px 0px 61.96078872680664px -3.098039388656616px #454e5f40;
 }
 
-.flash-searchBar-bg {
+/* .flash-searchBar-bg {
   background-color: #00cfff !important;
   transition: background-color 0.5s ease-in-out;
   -webkit-transition: background-color 0.5s ease-in-out;
   -moz-transition: background-color 0.5s ease-in-out;
   -ms-transition: background-color 0.5s ease-in-out;
   -o-transition: background-color 0.5s ease-in-out;
+} */
+
+.mainBgColor {
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    #020f23 0%,
+    #020e21 15.5%,
+    #030e20 27%,
+    #030d1d 46.5%,
+    #030c1b 66%,
+    #040c18 84%,
+    #040b16 100%
+  );
+}
+
+.inputPlaceholder::placeholder {
+  font-size: 14px;
+  line-height: 26px;
 }

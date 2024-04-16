@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; hideSearch: boolean }) {
   return (
-    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
+    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg dark:bg-[#020C1B] text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center">
@@ -34,7 +34,8 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
       </div> */}
 
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
-      {!isExplorerPage && (
+      {/* commented out based on Metin request */}
+      {/* {!isExplorerPage && (
         <div className="mr-5 flex-1 items-center justify-end space-x-4 hidden md:flex">
           <nav className="flex items-center space-x-2">
             <Link
@@ -44,7 +45,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
               Explorer
             </Link>
 
-            {/* <Link href={"https://www.egabee.com/login"}>
+            <Link href={"https://www.egabee.com/login"}>
             <div className="flex items-center  ">
               <Button
                 variant={"outline"}
@@ -53,12 +54,13 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
                 <p>Dashboard</p>
               </Button>
             </div>
-          </Link> */}
+          </Link>
           </nav>
         </div>
-      )}
+      )} */}
       {/*----------------------------------go to Explorer Btn Mobile view------------------------------ */}
-      {!isExplorerPage && (
+      {/* commented out based on Metin request */}
+      {/* {!isExplorerPage && (
         <Sheet>
           <div className="absolute right-0 top-2 flex items-center mx-2 md:hidden border-0">
             <SheetTrigger
@@ -84,7 +86,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
                   </Button>
                 </div>
               </Link>
-              {/* <Link href={"https://www.egabee.com/login"}>
+              <Link href={"https://www.egabee.com/login"}>
               <div className="flex items-start px-6   ">
                 <Button
                   variant={"outline"}
@@ -93,11 +95,11 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
                   <p>Dashboard</p>
                 </Button>
               </div>
-            </Link> */}
+            </Link>
             </div>
           </SheetContent>
         </Sheet>
-      )}
+      )} */}
     </div>
   )
 }
