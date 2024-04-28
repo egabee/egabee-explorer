@@ -25,23 +25,23 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
   const [target, setTarget] = useState<string>('')
 
-  const [flash, setFlash] = useState(false)
+  // const [flash, setFlash] = useState(false)
 
   const { data, error, isLoading } = useSearch(key)
 
-  useEffect(() => {
-    if (flash) {
-      const timeoutId = setTimeout(() => {
-        setFlash(false)
-      }, 400)
+  // useEffect(() => {
+  //   if (flash) {
+  //     const timeoutId = setTimeout(() => {
+  //       setFlash(false)
+  //     }, 400)
 
-      return () => clearTimeout(timeoutId)
-    }
-  }, [flash])
+  //     return () => clearTimeout(timeoutId)
+  //   }
+  // }, [flash])
 
-  const flashColor = () => {
-    setFlash(true)
-  }
+  // const flashColor = () => {
+  //   setFlash(true)
+  // }
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKey('')
@@ -122,9 +122,7 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
   return (
     <div
-      className={clsx(`z-[9999] relative flex justify-center items-center py-1 px-2 w-[80vw] max-w-[700px] mx-auto searchBar-boxShadow ${
-        flash ? 'flash-searchBar-bg' : ''
-      }
+      className={clsx(`z-[9999] relative flex justify-center items-center dark:bg-[#020914] py-1 px-2 w-[80vw] max-w-[700px] mx-auto searchBar-boxShadow
           border-2 dark:border-[#2c72db] border-lightmodeborder rounded-sm gap-x-2 bg-secBg searchBar`)}
     >
       <div className="flex items-center">
@@ -135,19 +133,17 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
       <input
         className={clsx(
-          `p-1 dark:text-white text-mainText w-full ${flash ? 'flash-searchBar-bg' : ''} ${
-            mainSearch && 'h-12'
-          } dark:bg-[#1B1E23] border-none hover:ring-0 focus:outline-none focus:ring-0`
+          `p-1 dark:text-white text-mainText w-full inputPlaceholder focus:placeholder-transparent dark:bg-[#020914] border-none hover:ring-0 focus:outline-none focus:ring-0`
         )}
         id="searchbar-input"
         type="text"
         placeholder="Search for any transaction or address"
         value={searchText}
         onChange={changeHandler}
-        onClick={() => flashColor()}
+        // onClick={() => flashColor()}
       />
       {searchText.length > 0 && !error && (
-        <div className="max-h-44 overflow-y-auto yellow-scroll absolute left-0 top-[105%] border dark:border-light-white border-light-white border-t-0 shadow-black dark:shadow-md shadow-sm py-1 w-full dark:bg-[#19191A] bg-secBg rounded-b-sm">
+        <div className="max-h-44 overflow-y-auto yellow-scroll absolute left-0 top-[105%] border border-t-0 shadow-black dark:shadow-md shadow-sm py-1 w-full mainBgColor bg-secBg rounded-b-sm">
           {searchResults?.length > 0 ? (
             searchResults.map((item: any, i: number) => (
               <div
