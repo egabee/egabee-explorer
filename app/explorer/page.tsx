@@ -36,16 +36,16 @@ export default function Explorer() {
   const [Data, setData] = useState<{ id: string; name: string; address: string; network: string }[]>([])
 
   const [networks, setNetworks] = useState<Network[]>([])
-  const { networksData, isLoading: chainsIsLoading, error: networksError } = useNetworksContext()
+  const { chainsData, isLoading: chainsIsLoading, error: networksError } = useNetworksContext()
 
   //get supported networks
   useEffect(() => {
-    if (!networksError && networksData) {
-      setNetworks(networksData)
+    if (!networksError && chainsData) {
+      setNetworks(chainsData)
     }
-  }, [networksData, networksError])
+  }, [chainsData, networksError])
 
-  // console.log('networksData', networksData)
+  // console.log('chainsData', chainsData)
 
   // get data
   useEffect(() => {
@@ -132,7 +132,7 @@ export default function Explorer() {
   }
   // console.log(networks)
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden">
+    <div className="relative flex min-h-screen flex-col overflow-hidden mainBgColor">
       <SiteHeader hideSearch={false} isExplorerPage={true} />
       <div className="py-2 mt-10" onClick={() => setSearchText('')}>
         <div className="container mx-auto px-4">

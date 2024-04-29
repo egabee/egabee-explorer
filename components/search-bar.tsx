@@ -149,8 +149,8 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
               <div
                 key={i}
                 onClick={() => navToItem(item.id)}
-                className={` px-4 py-3 flex justify-between items-center   text-[10px] sm:text-xs   max-w-full
-                      ${i % 2 ? 'dark:bg-[#19191A] bg-secBg' : 'dark:bg-shark-40 bg-secBg'} cursor-pointer 
+                className={`px-4 py-3 flex justify-between items-center text-[10px] sm:text-xs max-w-full
+                      ${i % 2 ? 'mainBgColor bg-secBg' : 'mainBgColor bg-secBg'} cursor-pointer 
                       `}
               >
                 <p className="truncate">

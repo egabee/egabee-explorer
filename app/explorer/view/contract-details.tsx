@@ -9,7 +9,7 @@ interface props {
 export default function ContractDetailsPage({ insights, selectedRow }: props) {
   return (
     <div className="flex flex-col mt-4 gap-y-6 py-2 dark:text-athens-gray text-mainText duration-300">
-      <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 py-2 w-full h-fit lg:h-60 text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
+      <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 py-2 w-full h-fit lg:h-60 text-xs md:text-sm lg:text-base rounded mainBgColor bg-secBg shadow-md">
         <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
           <div className="flex flex-row justify-between gap-2">
             <div className="min-w-fit font-semibold">Contract address: </div>
@@ -35,7 +35,7 @@ export default function ContractDetailsPage({ insights, selectedRow }: props) {
           </div>
         </div>
       </div>
-      <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full py-2 h-fit lg:h-60 text-xs md:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
+      <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full py-2 h-fit lg:h-60 text-xs md:text-base rounded mainBgColor bg-secBg shadow-md">
         <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
           <div className="flex justify-between">
             <div className="font-semibold">Cosmwasm-vm:</div>
