@@ -13,7 +13,6 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Button } from '@/components/ui/button'
 import { Check, ChevronLeft, ChevronRight, Copy } from 'lucide-react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import CopyFunction from '../buttons/copy-button'
 import { useState } from 'react'
 
 interface DataTableProps<TData, TValue> {
@@ -85,9 +84,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                       onRowClick(row.original.id, row.index)
                     }
                   }}
-                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-shark odd:bg-[#d5d5de] dark:odd:bg-shark-tint-30 even:bg-transparent ${
-                    row.index % 2 === 0 ? 'even-row' : 'odd-row'
-                  }`}
+                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-[#1d1a70cd] odd:bg-[#d5d5de] dark:odd:bg-[#161456cd] even:bg-transparent`}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
@@ -127,7 +124,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 </TableRow>
               ))
             ) : (
-              <TableRow className="hover:bg-[#F2F4F7] dark:hover:bg-shark">
+              <TableRow className="hover:bg-[#F2F4F7] dark:hover:bg-[#1d1a70cd]">
                 <TableCell colSpan={columns.length} className="h-24 text-center text-secText dark:text-[#9A999E]">
                   No data.
                 </TableCell>
@@ -152,7 +149,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                 <SelectTrigger className="h-8 w-[60px] bg-transparent text-brand-30 dark:text-textGray border dark:border-[#9A999E] border-brand-30 border-opacity-25 dark:border-opacity-25 dark:hover:bg-brand hover:bg-brand-30 dark:hover:text-black hover:text-white ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
-                <SelectContent side="top" className="dark:bg-shark bg-secBg dark:text-white text-black">
+                <SelectContent side="top" className="mainBgColor bg-secBg dark:text-white text-black">
                   {[5, 10, 20, 50].map((pageSize) => (
                     <SelectItem
                       key={pageSize}

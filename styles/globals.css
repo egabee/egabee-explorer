@@ -75,13 +75,6 @@
   }
 }
 
-.even-row {
-  background-color: #8080801f;
-}
-
-.odd-row {
-  background-color: transparent;
-}
 .dark .nav-item::before {
   content: '';
   position: absolute;
@@ -212,4 +205,16 @@
 .inputPlaceholder::placeholder {
   font-size: 14px;
   line-height: 26px;
+}
+
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus {
+  border: 0px solid #253341;
+  -webkit-text-fill-color: #ededef;
+  -webkit-box-shadow: 0 0 0px 1000px #253341 inset;
+  box-shadow: 0 0 0px 1000px transparent inset;
+  transition: background-color 5000s ease-in-out 0s;
+  color: #202020;
+  caret-color: #f1f0fd;
 }

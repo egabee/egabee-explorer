@@ -25,7 +25,7 @@ export default function TransactionDetails({ details }: Props) {
   return (
     <div className="flex flex-col py-4">
       {/* <p className="font-semibold text-2xl">Transaction Details</p> */}
-      <div className="mt-2 px-2 sm:px-10 py-8 dark:bg-shark-40 bg-secBg rounded-md border dark:border-black shadow-md  border-opacity-10 font-semibold">
+      <div className="mt-2 px-2 sm:px-10 py-8 mainBgColor bg-secBg rounded-md border dark:border-light-white shadow-md  border-opacity-10 font-semibold">
         <div className=" flex justify-start mb-10 items-center gap-3">
           <p className="font-bold text-2xl dark:text-white text-mainText ">Transaction Details</p>
           <div className="text-[10px] break-all flex items-center sm:justify-start rounded py-1 px-2 dark:bg-light-white bg-mainBg dark:text-iron text-brand w-fit">

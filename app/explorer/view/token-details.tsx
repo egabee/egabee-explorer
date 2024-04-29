@@ -12,7 +12,7 @@ export default function TokenDetailsPage({ tokenDetails, insights, selectedRow }
     <div className="flex flex-col gap-y-6 py-2 dark:text-athens-gray text-mainText duration-300">
       <div className="grid grid-cols-1 gap-4 mt-5">
         <div className="flex gap-y-3 gap-x-4">
-          <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-60 text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
+          <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-60 text-xs md:text-sm lg:text-base rounded mainBgColor bg-secBg shadow-md">
             <div className="flex flex-col gap-y-2 py-2 mt-3 mx-6">
               <div className="flex flex-row justify-between">
                 <div className="w-40 font-semibold">Token Denom:</div>
@@ -40,7 +40,7 @@ export default function TokenDetailsPage({ tokenDetails, insights, selectedRow }
         </div>
       </div>
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
-        <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-48 text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
+        <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-48 text-xs md:text-sm lg:text-base rounded mainBgColor bg-secBg shadow-md">
           <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
             <div className="flex justify-between">
               <div className="font-semibold">Description:</div>
@@ -74,7 +74,7 @@ export default function TokenDetailsPage({ tokenDetails, insights, selectedRow }
           </div>
         </div>
 
-        <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-48 text-xs md:text-sm lg:text-base rounded dark:bg-shark-40 bg-secBg shadow-md">
+        <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 w-full h-fit md:h-48 text-xs md:text-sm lg:text-base rounded mainBgColor bg-secBg shadow-md">
           <div className="flex flex-col gap-y-2 py-2 lg:py-0 lg:mt-4 mx-6">
             <div className="flex justify-between">
               <div className="text-sm font-semibold">Burn Rate:</div>

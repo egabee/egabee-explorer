@@ -22,7 +22,7 @@ export const metadata: MyMetadata = {
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark yellow-scroll">
+    <html lang="en" className="dark yellow-scroll mainBgColor">
       <NetworksProvider>
         <SearchProvider>
           <body className={`darkBgColor bg-mainBg dark:text-textGray text-secText`}>
