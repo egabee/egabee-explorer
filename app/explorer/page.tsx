@@ -153,8 +153,8 @@ export default function Explorer() {
               <div className="flex justify-end">
                 <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
                   <SelectTrigger
-                    className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-base font-semibold leading-6 
-                    rounded bg-transparent text-brand-30 hover:text-brand-30 border-brand-30 border hover:bg-brand-30 hover:bg-opacity-20 duration-100"
+                    className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-[14px] !font-medium leading-6 dark:text-black !text-[#96ADC6] border-[#96ADC6]
+                    rounded bg-transparent hover:bg-brand hover:bg-opacity-25 duration-100"
                   >
                     <SelectValue placeholder="Select Network" />
                   </SelectTrigger>
@@ -178,8 +178,8 @@ export default function Explorer() {
               <div className="flex justify-end">
                 <Select defaultValue={key} onValueChange={setKey}>
                   <SelectTrigger
-                    className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-base font-semibold leading-6 dark:text-black text-white border-none
-                                rounded bg-brand-30 hover:bg-brand-30 duration-100"
+                    className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-[14px] !font-medium leading-6 dark:text-black !text-[#96ADC6] border-[#96ADC6]
+                                rounded bg-transparent hover:bg-brand hover:bg-opacity-25 duration-100"
                   >
                     <SelectValue placeholder="Select Type" />
                   </SelectTrigger>

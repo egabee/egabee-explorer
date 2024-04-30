@@ -84,7 +84,7 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                       onRowClick(row.original.id, row.index)
                     }
                   }}
-                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-[#1d1a70cd] odd:bg-[#d5d5de] dark:odd:bg-[#161456cd] even:bg-transparent`}
+                  className={`cursor-pointer hover:bg-[#cacad1] dark:hover:bg-[#131B26] odd:bg-[#d5d5de] dark:odd:bg-[#131B26] even:bg-[#0D1219]`}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
@@ -146,10 +146,10 @@ export function DataTable<TData extends DataRow, TValue>({ columns, data, onRowC
                   table.setPageSize(Number(value))
                 }}
               >
-                <SelectTrigger className="h-8 w-[60px] bg-transparent text-brand-30 dark:text-textGray border dark:border-[#9A999E] border-brand-30 border-opacity-25 dark:border-opacity-25 dark:hover:bg-brand hover:bg-brand-30 dark:hover:text-black hover:text-white ">
+                <SelectTrigger className="h-8 w-[60px] bg-transparent text-brand-30 dark:text-textGray border dark:border-[#9A999E] border-brand-30 border-opacity-25 dark:border-opacity-25 dark:hover:bg-brand dark:hover:bg-opacity-25 hover:bg-brand-30 hover:text-white ">
                   <SelectValue placeholder={table.getState().pagination.pageSize} />
                 </SelectTrigger>
-                <SelectContent side="top" className="mainBgColor bg-secBg dark:text-white text-black">
+                <SelectContent side="top" className="dark:bg-black bg-secBg dark:text-white text-black">
                   {[5, 10, 20, 50].map((pageSize) => (
                     <SelectItem
                       key={pageSize}

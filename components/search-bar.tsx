@@ -122,8 +122,8 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
   return (
     <div
-      className={clsx(`z-[9999] relative flex justify-center items-center dark:bg-[#020914] py-1 px-2 w-[80vw] max-w-[700px] mx-auto searchBar-boxShadow
-          border-2 dark:border-[#2c72db] border-lightmodeborder rounded-sm gap-x-2 bg-secBg searchBar`)}
+      className={clsx(`z-[9999] relative flex justify-center items-center dark:bg-[#0D1219] py-1 px-2 w-[80vw] max-w-[700px] mx-auto searchBar-boxShadow
+          border-2 dark:border-[#73AEFF] border-lightmodeborder rounded-sm gap-x-2 bg-secBg searchBar`)}
     >
       <div className="flex items-center">
         <span className="dark:text-[#9A999F] text-mainText cursor-pointer dark:hover:text-gray-100 hover:text-secText">
@@ -133,7 +133,7 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
       <input
         className={clsx(
-          `p-1 dark:text-white text-mainText w-full inputPlaceholder focus:placeholder-transparent dark:bg-[#020914] border-none hover:ring-0 focus:outline-none focus:ring-0`
+          `p-1 dark:text-white text-mainText w-full inputPlaceholder focus:placeholder-transparent dark:bg-[#0D1219] border-none hover:ring-0 focus:outline-none focus:ring-0`
         )}
         id="searchbar-input"
         type="text"

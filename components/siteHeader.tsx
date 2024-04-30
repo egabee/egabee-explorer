@@ -9,7 +9,7 @@ import Image from 'next/image'
 
 function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; hideSearch: boolean }) {
   return (
-    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg dark:bg-[#020C1B] text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
+    <div className="flex flex-row items-center w-full h-[65px] topBar bg-secBg dark:bg-[#0A0E14] text-mainText dark:text-ourWhite py-2 pl-3 sm:pl-5 sm:px-5 border-b dark:border-b-[#232326] border-b-lightmodeborder z-70">
       {/* ----------------------------------LOGO-------------------------------- */}
       <div>
         <Link href="/" className="flex items-center">
@@ -22,7 +22,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
         </Link>
       </div>
       {/* ----------------------------------SEARCH-BAR-------------------------------- */}
-      {!hideSearch && (
+      {hideSearch && (
         <div className="px-2 md:w-3/4 w-4/5 mx-auto">
           <SearchBar mainSearch={false} />
         </div>
@@ -35,32 +35,32 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
 
       {/* ----------------------------------GO tO Explorer BTN-------------------------------- */}
       {/* commented out based on Metin request */}
-      {/* {!isExplorerPage && (
+      {!isExplorerPage && (
         <div className="mr-5 flex-1 items-center justify-end space-x-4 hidden md:flex">
           <nav className="flex items-center space-x-2">
-            <Link
+            {/* <Link
               href={'/explorer'}
               className="nav-item relative flex items-center mx-3 text-lg font-normal sm:text-base text-secText dark:text-textGray dark:hover:text-white"
             >
               Explorer
-            </Link>
+            </Link> */}
 
-            <Link href={"https://www.egabee.com/login"}>
-            <div className="flex items-center  ">
-              <Button
-                variant={"outline"}
-                className="flex gap-x-1 bg-transparent text-brand rounded dark:hover:bg-brand hover:bg-brand-30 hover:bg-opacity-100 dark:hover:text-shark-40 hover:text-secBg border dark:border-brand-30 border-brand-30"
-              >
-                <p>Dashboard</p>
-              </Button>
-            </div>
-          </Link>
+            <Link href={'https://beta.egabee.com/'} target="_blank">
+              <div className="flex items-center  ">
+                <Button
+                  variant={'outline'}
+                  className="flex gap-x-1 bg-[#2A7AF6] text-[14px] text-[#0A0E14] rounded dark:hover:bg-brand hover:bg-brand-30 hover:bg-opacity-100 dark:hover:text-shark-40 hover:text-secBg border dark:border-brand-30 border-brand-30"
+                >
+                  <p>Join For Free</p>
+                </Button>
+              </div>
+            </Link>
           </nav>
         </div>
-      )} */}
+      )}
       {/*----------------------------------go to Explorer Btn Mobile view------------------------------ */}
       {/* commented out based on Metin request */}
-      {/* {!isExplorerPage && (
+      {!isExplorerPage && (
         <Sheet>
           <div className="absolute right-0 top-2 flex items-center mx-2 md:hidden border-0">
             <SheetTrigger
@@ -76,7 +76,7 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
 
           <SheetContent className="dark:bg-[#161618] bg-mainBg py-14 ">
             <div className="flex flex-col gap-2 mt-3">
-              <Link href={'/explorer'}>
+              {/* <Link href={'/explorer'}>
                 <div className="flex items-start px-6">
                   <Button
                     variant={'outline'}
@@ -85,21 +85,21 @@ function SiteHeader({ isExplorerPage, hideSearch }: { isExplorerPage?: boolean; 
                     <p>Explorer</p>
                   </Button>
                 </div>
+              </Link> */}
+              <Link href={'https://beta.egabee.com/'} target="_blank">
+                <div className="flex items-start px-6">
+                  <Button
+                    variant={'outline'}
+                    className="flex gap-x-2 bg-transparent w-full text-brand rounded hover:bg-brand hover:bg-opacity-100 hover:text-shark-40 border border-brand-30"
+                  >
+                    <p>Join For Free</p>
+                  </Button>
+                </div>
               </Link>
-              <Link href={"https://www.egabee.com/login"}>
-              <div className="flex items-start px-6   ">
-                <Button
-                  variant={"outline"}
-                  className="flex gap-x-2 bg-transparent w-full text-brand rounded hover:bg-brand hover:bg-opacity-100 hover:text-shark-40 border border-brand-30"
-                >
-                  <p>Dashboard</p>
-                </Button>
-              </div>
-            </Link>
             </div>
           </SheetContent>
         </Sheet>
-      )} */}
+      )}
     </div>
   )
 }
