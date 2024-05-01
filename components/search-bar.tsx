@@ -45,6 +45,7 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKey('')
+    setTarget('')
     setSearchResults([])
     setSearchText(e.target.value.trim())
   }
@@ -107,7 +108,10 @@ export default function SearchBar({ mainSearch }: { mainSearch: boolean }) {
     if (searchResults[0]?.tokenAddress) {
       setTarget('tokens')
     }
-    if (searchResults[0] && Object.keys(searchResults[0]).length === 1 && 'id' in searchResults[0]) {
+    if (
+      data?.wallets?.length ||
+      (searchResults[0] && Object.keys(searchResults[0]).length === 1 && 'id' in searchResults[0])
+    ) {
       setTarget('wallets')
     }
 

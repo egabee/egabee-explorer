@@ -23,7 +23,7 @@ export default function WalletDetailsPage({ insights, selectedRow }: props) {
               <div className="flex justify-between">
                 <div className="font-semibold">Balance:</div>
                 <div className="font-light">
-                  {formatWalletBalance(selectedRow?.wallet) || 0}
+                  {formatWalletBalance(selectedRow?.wallet) ?? '-'}
                   <span className="ms-1">{formatNetworkUnit(selectedRow?.network) || selectedRow?.unit}</span>
                 </div>
               </div>
