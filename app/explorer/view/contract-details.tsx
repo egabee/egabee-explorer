@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
-import React from 'react'
+import { useNetworksContext } from '@/context/NetworksContext'
+import { Network } from '@/lib/network'
+import { useEffect, useState } from 'react'
 
 interface props {
   insights: any[]
@@ -7,6 +9,19 @@ interface props {
 }
 
 export default function ContractDetailsPage({ insights, selectedRow }: props) {
+  const [networks, setNetworks] = useState<Network[]>([])
+  const { chainsData, isLoading: chainsIsLoading, error: networksError } = useNetworksContext()
+
+  //get supported networks
+  useEffect(() => {
+    if (!networksError && chainsData) {
+      setNetworks(chainsData)
+    }
+  }, [chainsData, networksError])
+
+  const selectedNetwork = networks.find((network) => network.id === selectedRow?.networkId)
+  const networkExplorerLink = selectedNetwork ? selectedNetwork.explorer : ''
+
   return (
     <div className="flex flex-col mt-4 gap-y-6 py-2 dark:text-athens-gray text-mainText duration-300">
       <div className="border dark:border-shark-tint-30 border-lightmodeborder border-opacity-50 py-2 w-full h-fit lg:h-60 text-xs md:text-sm lg:text-base rounded mainBgColor bg-secBg shadow-md">
@@ -54,9 +69,11 @@ export default function ContractDetailsPage({ insights, selectedRow }: props) {
           <div className="flex justify-between">
             <div className="font-semibold">Block Explorer:</div>
             <div className="font-light">
-              <a className="underline text-brand" href="https://explorer.coreum.com/coreum" target="_blank">
-                View Explorer
-              </a>
+              {networkExplorerLink && (
+                <a className=" underline dark:text-brand text-brand" href={networkExplorerLink} target="_blank">
+                  View Explorer
+                </a>
+              )}
             </div>
           </div>
         </div>

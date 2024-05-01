@@ -1,7 +1,4 @@
 /* eslint-disable max-len */
-import React from 'react'
-import { Globe } from 'lucide-react'
-import { Network } from '@/lib/network'
 
 interface Props {
   insights: any
