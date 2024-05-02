@@ -9,7 +9,7 @@ export default function Home() {
     <div className="relative flex h-screen flex-col overflow-hidden mainBgColor">
       <SiteHeader hideSearch={false} />
       <div className="min-w-[60%] dark:text-white text-mainText py-2 z-70">
-        <div className="mt-72">
+        <div className="h-[85vh] flex flex-col justify-center items-center">
           <div className="flex justify-center mb-8 sm:w-xs md:w-sm lg:w-md">
             <Image
               src={'/logo.svg'}
