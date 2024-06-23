@@ -38,6 +38,7 @@ export default function Explorer() {
 
   const [networks, setNetworks] = useState<Network[]>([])
   const { chainsData, isLoading: chainsIsLoading, error: networksError } = useNetworksContext()
+  const { setSearchText } = useSearchContext()
 
   //get supported networks
   useEffect(() => {
@@ -125,12 +126,10 @@ export default function Explorer() {
     }
   }, [networkId, key, networks])
 
-  const { setSearchText } = useSearchContext()
 
   if ((isLoading && Data.length === 0) || chainsIsLoading) {
     return <Spinner type={'main'} />
   }
-  console.log(networkId)
 
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden mainBgColor">
