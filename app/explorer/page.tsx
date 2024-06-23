@@ -17,8 +17,9 @@ import { Network } from '@/lib/network'
 import { useNetworksContext } from '@/context/NetworksContext'
 import { Relayer } from '@/lib/relayer'
 
-function getNetworkName(networkId: string) {
-  return networkId === '527339fa-ca4b-4eb0-8b6a-a53a6e5fac25' ? 'Coreum(mainnet)' : 'Coreum(testnet)'
+function getNetworkName(networkId: string, networks: Network[]): string {
+  const network = networks.find((network) => network.id === networkId)
+  return network ? `${network.name}(${network.env})` : 'Coreum(testnet)'
 }
 
 export default function Explorer() {
@@ -45,29 +46,28 @@ export default function Explorer() {
     }
   }, [chainsData, networksError])
 
-  // console.log('chainsData', chainsData)
+
 
   // get data
   useEffect(() => {
     setIsLoading(true)
     if (key === 'contracts') {
       const endpoint = `/api/0/explorer/networks/${networkId}/${key}/`
-
       const getdata = async () => {
         const resp = await axios.get(createUrl(endpoint))
         const data: Contract[] = resp.data
 
-        // console.log(data);
         setData(
           data.map(({ contractAddress, id, contractName }, index) => ({
             id: index.toString(),
             address: contractAddress,
             name: contractName,
-            network: getNetworkName(networkId),
+            network: getNetworkName(networkId, networks),
           }))
         )
         setIsLoading(false)
       }
+
 
       getdata()
     } else if (key === 'tokens') {
@@ -82,7 +82,7 @@ export default function Explorer() {
               id: index.toString(),
               name: name,
               address: tokenAddress,
-              network: getNetworkName(networkId),
+              network: getNetworkName(networkId, networks),
             }))
         )
         setIsLoading(false)
@@ -100,7 +100,7 @@ export default function Explorer() {
               id: index.toString(),
               name: name,
               address: nftId,
-              network: getNetworkName(networkId),
+              network: getNetworkName(networkId, networks),
             }))
         )
         setIsLoading(false)
@@ -116,21 +116,22 @@ export default function Explorer() {
             id: index.toString(),
             name: name,
             address: clientId,
-            network: getNetworkName(networkId),
+            network: getNetworkName(networkId, networks),
           }))
         )
         setIsLoading(false)
       }
       getdata()
     }
-  }, [networkId, key])
+  }, [networkId, key, networks])
 
   const { setSearchText } = useSearchContext()
 
   if ((isLoading && Data.length === 0) || chainsIsLoading) {
     return <Spinner type={'main'} />
   }
-  // console.log(networks)
+  console.log(networkId)
+
   return (
     <div className="relative flex min-h-screen flex-col overflow-hidden mainBgColor">
       <SiteHeader hideSearch={false} isExplorerPage={true} />
@@ -151,7 +152,7 @@ export default function Explorer() {
             <div className="flex flex-row items-center gap-2">
               {/* ---------------------------------- NETWORK SELECTOR ---------------------------------- */}
               <div className="flex justify-end">
-                <Select defaultValue={networkId} onValueChange={(value) => setNetworkId(value)}>
+                <Select defaultValue={networkId} onValueChange={setNetworkId}>
                   <SelectTrigger
                     className="flex items-center justify-center cursor-pointer h-10 !text-xs md:!text-[14px] !font-medium leading-6 dark:text-black !text-[#96ADC6] border-[#96ADC6]
                     rounded bg-transparent hover:bg-brand hover:bg-opacity-25 duration-100"
